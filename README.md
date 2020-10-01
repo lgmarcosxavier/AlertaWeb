@@ -63,6 +63,21 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 - [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
 - xml (enabled by default - don't turn it off)
 
+## Comandos
+Desplegar aplicación
+```
+php spark serve
+```
+
+Migraciones
+```
+php spark migrate:create [filename]
+php spark migrate
+php spark migrate:rollback
+php spark migrate:refresh
+php spark migrate:status
+```
+
 
 ## Historial versiones
 
@@ -72,3 +87,18 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 composer create-project codeigniter4/appstarter sistemaAlerta
 ```
 
+**30/09/2020**
+- Creada migraciones de las siguientes tablas:
+__Rol__,
+__Usuario__,
+__Estado__,
+__TelefonoUsuario__,
+__UsuarioConfianza__,
+__ContactoEmergencia__,
+__Telefono__,
+__Departamento__,
+__Municipio__,
+__TipoAlerta__,
+__Alerta__,
+__NotificacionAlerta__,
+__Sancion__.

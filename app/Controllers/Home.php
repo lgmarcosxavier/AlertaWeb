@@ -7,6 +7,12 @@ class Home extends BaseController
 		return view('welcome_message');
 	}
 
+	public function saludo()
+	{
+		$data['nombre'] = 'Marcos';
+		return view('saludo', $data);
+	}
+
 	//--------------------------------------------------------------------
 
 }
