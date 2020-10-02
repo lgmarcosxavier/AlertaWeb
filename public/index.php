@@ -8,8 +8,11 @@ if (phpversion() < $minPHPVersion)
 }
 unset($minPHPVersion);
 
+#$system_path = '';
+
 // Path to the front controller (this file)
 define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
+#define('BASEPATH', $system_path);
 
 // Location of the Paths config file.
 // This is the line that might need to be changed, depending on your folder structure.

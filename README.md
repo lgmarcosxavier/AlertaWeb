@@ -102,3 +102,7 @@ __TipoAlerta__,
 __Alerta__,
 __NotificacionAlerta__,
 __Sancion__.
+
+**01/10/2020**
+- Se ha empezado la parta gráfica del sistema. Ver [plantilla](https://github.com/KhidirDotID/stisla-codeigniter).
+- Demostración consulta departamentos y municipios.
