@@ -23,12 +23,12 @@ class Usuario extends Migration
 			'nombre' => [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '50',
-				'null'				=> false
+				'null'				=> true
 			],
 			'apellido' => [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '50',
-				'null'				=> false
+				'null'				=> true
 			],
 			'email' => [
 				'type'           	=> 'VARCHAR',
@@ -40,10 +40,14 @@ class Usuario extends Migration
 				'constraint'     	=> '255',
 				'null'				=> false
 			],
+			'password_hash' => [
+				'type' 				=> 'VARCHAR', 
+				'constraint' 		=> 191
+			],
 			'direccion' => [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '255',
-				'null'				=> false
+				'null'				=> true
 			],
 			'fotografia' => [
 				'type'           	=> 'VARCHAR',
@@ -55,6 +59,20 @@ class Usuario extends Migration
 				'constraint'     	=> '1',
 				'null'				=> false,
 				'default'			=> 1
+			],
+			'activate_hash' => [
+				'type' 				=> 'VARCHAR', 
+				'constraint' 		=> 191, 
+				'null' 				=> true
+			],
+            'reset_hash' => [
+				'type' 				=> 'VARCHAR', 
+				'constraint' 		=> 191, 
+				'null' 				=> true
+			],
+        	'reset_expires' => [
+				'type' 				=> 'BIGINT', 	
+				'null' 				=> true
 			],
 			'fecha_commit' => [
 				'type'           	=> 'DATE',

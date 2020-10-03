@@ -106,3 +106,8 @@ __Sancion__.
 **01/10/2020**
 - Se ha empezado la parta gráfica del sistema. Ver [plantilla](https://github.com/KhidirDotID/stisla-codeigniter).
 - Demostración consulta departamentos y municipios.
+
+**02/10/2020**
+- Implementado login.
+- Mejorada vista login, para el diseño de la ola, ver [generador](https://getwaves.io/).
+- La ruta por defecto se redireccionará al login.

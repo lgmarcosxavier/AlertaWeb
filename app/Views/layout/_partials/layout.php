@@ -140,7 +140,7 @@
                     </li>
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="<?php echo base_url('img/avatar/avatar-1.png'); ?>" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hola, invitado</div>
+                            <div class="d-sm-none d-lg-inline-block"><?php echo $_SESSION['userData']['nombre'] ?? ' Anónimo' ?></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Iniciado sesión</div>
@@ -148,7 +148,7 @@
                                 <i class="far fa-user"></i> Perfil
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item has-icon text-danger">
+                            <a href="<?= site_url('logout') ?>" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Cerrar sesión
                             </a>
                         </div>
