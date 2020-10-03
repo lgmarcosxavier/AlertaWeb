@@ -111,3 +111,6 @@ __Sancion__.
 - Implementado login.
 - Mejorada vista login, para el diseño de la ola, ver [generador](https://getwaves.io/).
 - La ruta por defecto se redireccionará al login.
+
+**03/10/2020**
+- Agregada login, en api rest.

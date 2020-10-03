@@ -79,7 +79,7 @@ class UsuarioModel extends Model
 
 		$data['data']['password_hash'] = password_hash($data['data']['contrasenia'], PASSWORD_DEFAULT);
         unset($data['data']['contrasenia']);
-		unset($data['data']['password_confirm']);
+		//unset($data['data']['password_confirm']);
 
 		return $data;
 	}

@@ -33,6 +33,14 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get("/dashboard", "Dashboard::index", ['as' => 'dashboard']);
 
+/*
+* ------------------------------------
+* Api Rest
+* ------------------------------------
+*/
+$routes->post('/api/login','RestController::login', ['as' => 'api_login']);
+
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
