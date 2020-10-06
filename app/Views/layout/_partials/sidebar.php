@@ -22,6 +22,13 @@
                 <li><a class="nav-link" href="<?php echo base_url('municipio'); ?>">Consultar</a></li>
                 </ul>
             </li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown <?php echo $page == 'tipo-alerta' ? ' active' : ' ' ?>"><i class="far fa-file-alt"></i> <span>Tipo alerta</span></a>
+                <ul class="dropdown-menu">
+                <?php /* <li><a class="nav-link" href="<?php echo base_url('tipoAlerta'); ?>">Consultar</a></li> */ ?>
+                <li><a class="nav-link" href="<?= route_to('tipoAlerta_index') ?>">Consultar</a></li>
+                </ul>
+            </li>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

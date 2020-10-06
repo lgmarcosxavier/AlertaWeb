@@ -32,6 +32,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get("/dashboard", "Dashboard::index", ['as' => 'dashboard']);
+# TipoAlerta
+$routes->get('tipoAlerta', 'TipoAlerta::index', ['as' => 'tipoAlerta_index']);
+$routes->get('tipoAlerta/crear', 'TipoAlerta::crear', ['as' => 'tipoAlerta_crear']);
+$routes->post('tipoAlerta/registrar', 'TipoAlerta::registrar', ['as' => 'tipoAlerta_registrar']);
+$routes->get('tipoAlerta/editar/(:num)', 'TipoAlerta::editar/$1', ['as' => 'tipoAlerta_editar']);
+$routes->post('tipoAlerta/actualizar/(:num)', 'TipoAlerta::actualizar/$1', ['as' => 'tipoAlerta_actualizar']);
+$routes->post('tipoAlerta/eliminar/(:num)', 'TipoAlerta::destroy/$1', ['as' => 'tipoAlerta_eliminar']);
+
 
 /*
 * ------------------------------------

@@ -114,3 +114,8 @@ __Sancion__.
 
 **03/10/2020**
 - Agregada login, en api rest.
+
+**05/10/2020**
+- Se ha actualizado la base de datos, realizada migración para la tabla __mensajes_personalizados__.
+- Se ha agregado la consulta de tipo de alertas.
+- Agregada funcionalidad para registrar/editar/eliminar tipo de alerta.
