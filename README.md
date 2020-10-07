@@ -78,6 +78,16 @@ php spark migrate:refresh
 php spark migrate:status
 ```
 
+Seeders
+```
+php spark db:seed NombreSeeder
+```
+
+## Usuario administrador
+```
+admin@admin.com
+admin
+```
 
 ## Historial versiones
 
@@ -119,3 +129,13 @@ __Sancion__.
 - Se ha actualizado la base de datos, realizada migración para la tabla __mensajes_personalizados__.
 - Se ha agregado la consulta de tipo de alertas.
 - Agregada funcionalidad para registrar/editar/eliminar tipo de alerta.
+
+**06/10/2020**
+- Se ha creado la clase Seeder para los roles.
+- Se ha creado la clase Seeder para el usuario administrador.
+```
+php spark db:seed RolesSeeder
+php spark db:seed UsuarioMasterSeeder
+```
+- Agregada registrar usuario administrador siguiente buenas prácicas de validaión. Ver [siguiente enlace](https://iniblog.xyz/blogpost/article/81/form-validation-example).
+- Al consultar usuarios, no aparecerá el botón de elimnar usuario, del que se encuentra logueado.

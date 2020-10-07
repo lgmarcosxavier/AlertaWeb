@@ -26,11 +26,11 @@
 <form method="POST" action="<?= site_url('login'); ?>" accept-charset="UTF-8">
     <p>
         <?php /* <label><?= lang('Auth.email') ?></label><br /> */ ?>
-        <input required type="email" name="email" placeholder="Correo electrónico" value="<?= old('email', 'admin@admin.com') ?>"/>
+        <input required type="email" name="email" placeholder="Correo electrónico" value="<?= old('email') ?>"/>
     </p>
     <p>
         <?php /* <label><?= lang('Auth.password') ?></label><br /> */ ?>
-        <input required minlength="5" type="password" name="contrasenia" placeholder="Contraseña..." value="admin"/>
+        <input required minlength="5" type="password" name="contrasenia" placeholder="Contraseña...">
     </p>
     <p>
         <?= csrf_field() ?>

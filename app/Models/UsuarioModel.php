@@ -18,7 +18,7 @@ class UsuarioModel extends Model
         'nombre', 
         'apellido', 
         'email', 
-        'contrasenia', 
+        'contrasenia',
         'password_hash', 
         'direccion',
         'fotografia',
@@ -30,11 +30,11 @@ class UsuarioModel extends Model
         'hora_commit'
     ];
 
-    protected $useTimestamps = false;
+    //protected $useTimestamps = false;
 
-    protected $validationRules    = [];
+    //protected $validationRules    = [];
     // we need different rules for registration, account update, etc
-	protected $dynamicRules = [
+	/*protected $dynamicRules = [
 		'registration' => [
 			//'nombre' 				=> 'required|alpha_space|min_length[2]',
 			'email' 			    => 'required|valid_email|is_unique[users.email]',
@@ -50,30 +50,31 @@ class UsuarioModel extends Model
 			'new_email'		=> 'required|valid_email|is_unique[users.email]',
 			'activate_hash'	=> 'required'
 		]
-	];
-    protected $validationMessages = [];
-    protected $skipValidation     = false;
+	];*/
+    
+    //protected $validationMessages = [];
+    //protected $skipValidation     = false;
 
     // this runs after field validation
-	protected $beforeInsert = ['hashPassword'];
-    protected $beforeUpdate = ['hashPassword'];
+	//protected $beforeInsert = ['hashPassword'];
+    //protected $beforeUpdate = ['hashPassword'];
     
     //--------------------------------------------------------------------
 
     /**
      * Retrieves validation rule
      */
-	public function getRule(string $rule)
+	/*public function getRule(string $rule)
 	{
 		return $this->dynamicRules[$rule];
-	}
+	}*/
 
     //--------------------------------------------------------------------
 
     /**
      * Hashes the password after field validation and before insert/update
      */
-	protected function hashPassword(array $data)
+	/*protected function hashPassword(array $data)
 	{
 		if (! isset($data['data']['contrasenia'])) return $data;
 
@@ -82,5 +83,5 @@ class UsuarioModel extends Model
 		//unset($data['data']['password_confirm']);
 
 		return $data;
-	}
+	}*/
 }

@@ -39,6 +39,13 @@ $routes->post('tipoAlerta/registrar', 'TipoAlerta::registrar', ['as' => 'tipoAle
 $routes->get('tipoAlerta/editar/(:num)', 'TipoAlerta::editar/$1', ['as' => 'tipoAlerta_editar']);
 $routes->post('tipoAlerta/actualizar/(:num)', 'TipoAlerta::actualizar/$1', ['as' => 'tipoAlerta_actualizar']);
 $routes->post('tipoAlerta/eliminar/(:num)', 'TipoAlerta::destroy/$1', ['as' => 'tipoAlerta_eliminar']);
+# Usuarios administradores
+$routes->get('usuario/administrador', 'Usuario::administradores', ['as' => 'usuarioAdmininistrador']);
+$routes->get('usuario/administrador/crear', 'Usuario::crearAdministrador', ['as' => 'usuarioAdministrador_crear']);
+$routes->post('usuario/administrador/registrar', 'Usuario::registrarAdministrador', ['as' => 'usuarioAdministrador_registrar']);
+$routes->get('usuario/administrador/editar/(:num)', 'Usuario::editarAdministrador/$1', ['as' => 'usuarioAdministrador_editar']);
+
+$routes->post('usuario/administrador/eliminar/(:num)', 'Usuario::eliminarAdministrador/$1', ['as' => 'usuarioAdministrador_eliminar']);
 
 
 /*
