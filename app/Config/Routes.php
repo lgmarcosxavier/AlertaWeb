@@ -31,6 +31,49 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get("/dashboard", "Dashboard::index", ['as' => 'dashboard']);
+# TipoAlerta
+$routes->get('tipoAlerta', 'TipoAlerta::index', ['as' => 'tipoAlerta_index']);
+$routes->get('tipoAlerta/crear', 'TipoAlerta::crear', ['as' => 'tipoAlerta_crear']);
+$routes->post('tipoAlerta/registrar', 'TipoAlerta::registrar', ['as' => 'tipoAlerta_registrar']);
+$routes->get('tipoAlerta/editar/(:num)', 'TipoAlerta::editar/$1', ['as' => 'tipoAlerta_editar']);
+$routes->post('tipoAlerta/actualizar/(:num)', 'TipoAlerta::actualizar/$1', ['as' => 'tipoAlerta_actualizar']);
+$routes->post('tipoAlerta/eliminar/(:num)', 'TipoAlerta::destroy/$1', ['as' => 'tipoAlerta_eliminar']);
+# Usuarios administradores
+$routes->get('usuario/administrador', 'Usuario::administradores', ['as' => 'usuarioAdmininistrador']);
+$routes->get('usuario/administrador/crear', 'Usuario::crearAdministrador', ['as' => 'usuarioAdministrador_crear']);
+$routes->post('usuario/administrador/registrar', 'Usuario::registrarAdministrador', ['as' => 'usuarioAdministrador_registrar']);
+$routes->get('usuario/administrador/editar/(:num)', 'Usuario::editarAdministrador/$1', ['as' => 'usuarioAdministrador_editar']);
+
+$routes->post('usuario/administrador/eliminar/(:num)', 'Usuario::eliminarAdministrador/$1', ['as' => 'usuarioAdministrador_eliminar']);
+
+
+/*
+* ------------------------------------
+* Api Rest
+* ------------------------------------
+*/
+$routes->post('/api/login','RestController::login', ['as' => 'api_usuarioLogin']);
+$routes->post('/api/registrar/usuario','RestController::registrarUsuario', ['as' => 'api_usuarioRegistrar']);
+$routes->post('/api/actualizar/usuario','RestController::actualizarUsuario', ['as' => 'api_actualizarUsuario']);
+$routes->post('/api/obtener/sanciones/usuario','RestController::sancionesUsuario', ['as' => 'api_sancionesUsuario']);
+$routes->post('/api/obtener/tipoAlerta','RestController::obtenerTiposAlerta', ['as' => 'api_obtenerTiposAlerta']);
+$routes->post('/api/obtener/departamentos','RestController::obtenerDepartamentos', ['as' => 'api_obtenerDepartamentos']);
+$routes->post('/api/obtener/municipios','RestController::obtenerMunicipios_Departamento', ['as' => 'api_obtenerMunicipios_Departamento']);
+$routes->post('/api/obtener/usuarios','RestController::obtenerUsuarios', ['as' => 'api_obtenerUsuarios']);
+$routes->post('/api/obtener/usuarios/por/nombre','RestController::obtenerUsuariosPorNombre', ['as' => 'api_obtenerUsuariosPorNombre']);
+$routes->post('/api/registrar/mensaje/personalizado','RestController::registrarMensajePersonalizado', ['as' => 'api_registrarMensajePersonalizado']);
+$routes->post('/api/consultar/mensaje/personalizado','RestController::consultarMensajesPersonalizado', ['as' => 'api_consultarMensajesPersonalizado']);
+$routes->post('/api/registrar/usuario/confianza', 'RestController::registrarUsuarioConfianza', ['as' => 'api_registrarUsuarioConfianza']);
+$routes->post('/api/consultar/usuario/confianza', 'RestController::consultarUsuariosConfianza', ['as' => 'api_consultarUsuariosConfianza']);
+$routes->post('/api/consultar/usuario/confianza/por/nombre', 'RestController::consultarUsuariosConfianzaPorNombre', ['as' => 'api_consultarUsuariosConfianzaPorNombre']);
+$routes->post('/api/obtener/contactos/emergencia','RestController::obtenerContactosEmergencia', ['as' => 'api_obtenerContactosEmergencia']);
+$routes->post('/api/consultar/alertas/usuario','RestController::consultarAlertasUsuario', ['as' => 'api_consultarAlertasUsuario']);
+$routes->post('/api/obtener/alerta','RestController::obtenerAlerta', ['as' => 'api_obtenerAlerta']);
+$routes->post('/api/marcar/vista/alerta','RestController::marcarAlertaVista', ['as' => 'api_marcarAlertaVista']);
+$routes->post('/api/obtener/alerta/no/vistas','RestController::obtenerAlertasNoVistas', ['as' => 'api_obtenerAlertasNoVistas']);
+$routes->post('/api/registrar/alerta','RestController::registrarAlerta', ['as' => 'api_registrarAlerta']);
+
 
 /**
  * --------------------------------------------------------------------
