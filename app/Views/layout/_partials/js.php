@@ -45,8 +45,6 @@
 <script src="<?php echo base_url('modules/codemirror/lib/codemirror.js'); ?>"></script>
 <script src="<?php echo base_url('modules/codemirror/mode/javascript/javascript.js'); ?>"></script>
 <script src="<?php echo base_url('modules/jquery-selectric/jquery.selectric.min.js'); ?>"></script>
-<!--<script src="http// ://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>-->
-<!--<!--<script src="<?php // echo base_url('modules/gmaps.js'); ?>"></script>-->-->
 <script src="<?php echo base_url('modules/fullcalendar/fullcalendar.min.js'); ?>"></script>
 <script src="<?php echo base_url('modules/chart.min.js'); ?>"></script>
 <script src="<?php echo base_url('modules/datatables/datatables.min.js'); ?>"></script>
