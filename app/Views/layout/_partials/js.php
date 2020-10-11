@@ -45,8 +45,8 @@
 <script src="<?php echo base_url('modules/codemirror/lib/codemirror.js'); ?>"></script>
 <script src="<?php echo base_url('modules/codemirror/mode/javascript/javascript.js'); ?>"></script>
 <script src="<?php echo base_url('modules/jquery-selectric/jquery.selectric.min.js'); ?>"></script>
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
-<script src="<?php echo base_url('modules/gmaps.js'); ?>"></script>
+<!--<script src="http// ://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>-->
+<!--<!--<script src="<?php // echo base_url('modules/gmaps.js'); ?>"></script>-->-->
 <script src="<?php echo base_url('modules/fullcalendar/fullcalendar.min.js'); ?>"></script>
 <script src="<?php echo base_url('modules/chart.min.js'); ?>"></script>
 <script src="<?php echo base_url('modules/datatables/datatables.min.js'); ?>"></script>
@@ -73,8 +73,7 @@
 <script src="<?php echo base_url('modules/codemirror/mode/javascript/javascript.js'); ?>"></script>
 <script src="<?php echo base_url('modules/summernote/summernote-bs4.js'); ?>"></script>
 <script src="<?php echo base_url('modules/chocolat/dist/js/jquery.chocolat.min.js'); ?>"></script>
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
-<script src="<?php echo base_url('modules/gmaps.js'); ?>"></script>
+<!--<script src="<?php // echo base_url('modules/gmaps.js'); ?>"></script>-->
 
 
 <!-- Page Specific JS File -->
@@ -87,14 +86,14 @@
 <script src="<?php echo base_url('js/page/components-table.js'); ?>"></script>
 <script src="<?php echo base_url('js/page/components-user.js'); ?>"></script>
 <script src="<?php echo base_url('js/page/forms-advanced-forms.js'); ?>"></script>
-<script src="<?php echo base_url('js/page/gmaps-advanced-route.js'); ?>"></script>
-<script src="<?php echo base_url('js/page/gmaps-draggable-marker.js'); ?>"></script>
-<script src="<?php echo base_url('js/page/gmaps-geocoding.js'); ?>"></script>
-<script src="<?php echo base_url('js/page/gmaps-geolocation.js'); ?>"></script>
-<script src="<?php echo base_url('js/page/gmaps-marker.js'); ?>"></script>
-<script src="<?php echo base_url('js/page/gmaps-multiple-marker.js'); ?>"></script>
-<script src="<?php echo base_url('js/page/gmaps-route.js'); ?>"></script>
-<script src="<?php echo base_url('js/page/gmaps-simple.js'); ?>"></script>
+<!--<script src="<?php // echo base_url('js/page/gmaps-advanced-route.js'); ?>"></script>-->
+<!--<script src="<?php // echo base_url('js/page/gmaps-draggable-marker.js'); ?>"></script>-->
+<!--<script src="<?php // echo base_url('js/page/gmaps-geocoding.js'); ?>"></script>-->
+<!--<script src="<?php // echo base_url('js/page/gmaps-geolocation.js'); ?>"></script>-->
+<!--<script src="<?php // echo base_url('js/page/gmaps-marker.js'); ?>"></script>-->
+<!--<script src="<?php // echo base_url('js/page/gmaps-multiple-marker.js'); ?>"></script>-->
+<!--<script src="<?php // echo base_url('js/page/gmaps-route.js'); ?>"></script>-->
+<!--<script src="<?php // echo base_url('js/page/gmaps-simple.js'); ?>"></script>-->
 <script src="<?php echo base_url('js/page/modules-calendar.js'); ?>"></script>
 <script src="<?php echo base_url('js/page/modules-chartjs.js'); ?>"></script>
 <script src="<?php echo base_url('js/page/modules-datatables.js'); ?>"></script>
