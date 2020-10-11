@@ -1,7 +1,6 @@
 <?php namespace App\Models;
 
 use CodeIgniter\Model;
-
 class UsuarioModel extends Model
 {
     protected $DBGroup = 'default';
@@ -17,6 +16,7 @@ class UsuarioModel extends Model
         'id_rol', 
         'nombre', 
         'apellido', 
+        'numero_telefono', 
         'email', 
         'contrasenia',
         'password_hash', 

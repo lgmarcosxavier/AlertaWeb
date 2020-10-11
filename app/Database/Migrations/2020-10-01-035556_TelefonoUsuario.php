@@ -2,11 +2,12 @@
 
 use CodeIgniter\Database\Migration;
 
+// ya no se usa
 class TelefonoUsuario extends Migration
 {
 	public function up()
 	{
-		$this->db->disableForeignKeyChecks();
+		/*$this->db->disableForeignKeyChecks();
 
 		$this->forge->addField([
 			'id' => [
@@ -46,12 +47,13 @@ class TelefonoUsuario extends Migration
 		$this->forge->createTable('telefono_usuario');
 
 		$this->db->enableForeignKeyChecks();
+		*/
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		$this->forge->dropTable('telefono_usuario');
+		//$this->forge->dropTable('telefono_usuario');
 	}
 }

@@ -26,7 +26,7 @@ class NotificacionAlerta extends Migration
 				'null'				=> true,
 			],
 			'hora_recibido' => [
-				'type'           	=> 'time',
+				'type'           	=> 'TIME',
 				'null'				=> true,
 			],
 			'id_usuario_emisor' => [

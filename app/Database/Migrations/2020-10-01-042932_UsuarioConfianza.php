@@ -18,14 +18,16 @@ class UsuarioConfianza extends Migration
 			'id_usuario' => [
 				'type' 				=> 'INT',
 				'constraint' 		=> 5,
-				'unsigned' 			=> true
+				'unsigned' 			=> true,
+				'null'				=> false
 			],
 			'id_usuario_confianza' => [
 				'type' 				=> 'INT',
 				'constraint' 		=> 5,
-				'unsigned' 			=> true
+				'unsigned' 			=> true,
+				'null'				=> false
 			],
-			'nombre' => [
+			/*'nombre' => [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '100',
 				'null'				=> false
@@ -34,7 +36,7 @@ class UsuarioConfianza extends Migration
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '100',
 				'null'				=> false
-			],
+			],*/
 			'estado' => [
 				'type'           	=> 'INT',
 				'constraint'     	=> '1',

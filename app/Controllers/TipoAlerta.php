@@ -41,7 +41,7 @@ class TipoAlerta extends Controller
             $model = new TipoAlertaModel();
 
             $datos = array(
-                'descripcion' => $descripcion,
+                'descripcion' => $descripcion,  
                 'fecha_commit' => date('Y-m-d'),
                 'hora_commit' => date('H:i:s'),
                 'estado' => 1

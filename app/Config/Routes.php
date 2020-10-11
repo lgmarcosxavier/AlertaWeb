@@ -53,7 +53,26 @@ $routes->post('usuario/administrador/eliminar/(:num)', 'Usuario::eliminarAdminis
 * Api Rest
 * ------------------------------------
 */
-$routes->post('/api/login','RestController::login', ['as' => 'api_login']);
+$routes->post('/api/login','RestController::login', ['as' => 'api_usuarioLogin']);
+$routes->post('/api/registrar/usuario','RestController::registrarUsuario', ['as' => 'api_usuarioRegistrar']);
+$routes->post('/api/actualizar/usuario','RestController::actualizarUsuario', ['as' => 'api_actualizarUsuario']);
+$routes->post('/api/obtener/sanciones/usuario','RestController::sancionesUsuario', ['as' => 'api_sancionesUsuario']);
+$routes->post('/api/obtener/tipoAlerta','RestController::obtenerTiposAlerta', ['as' => 'api_obtenerTiposAlerta']);
+$routes->post('/api/obtener/departamentos','RestController::obtenerDepartamentos', ['as' => 'api_obtenerDepartamentos']);
+$routes->post('/api/obtener/municipios','RestController::obtenerMunicipios_Departamento', ['as' => 'api_obtenerMunicipios_Departamento']);
+$routes->post('/api/obtener/usuarios','RestController::obtenerUsuarios', ['as' => 'api_obtenerUsuarios']);
+$routes->post('/api/obtener/usuarios/por/nombre','RestController::obtenerUsuariosPorNombre', ['as' => 'api_obtenerUsuariosPorNombre']);
+$routes->post('/api/registrar/mensaje/personalizado','RestController::registrarMensajePersonalizado', ['as' => 'api_registrarMensajePersonalizado']);
+$routes->post('/api/consultar/mensaje/personalizado','RestController::consultarMensajesPersonalizado', ['as' => 'api_consultarMensajesPersonalizado']);
+$routes->post('/api/registrar/usuario/confianza', 'RestController::registrarUsuarioConfianza', ['as' => 'api_registrarUsuarioConfianza']);
+$routes->post('/api/consultar/usuario/confianza', 'RestController::consultarUsuariosConfianza', ['as' => 'api_consultarUsuariosConfianza']);
+$routes->post('/api/consultar/usuario/confianza/por/nombre', 'RestController::consultarUsuariosConfianzaPorNombre', ['as' => 'api_consultarUsuariosConfianzaPorNombre']);
+$routes->post('/api/obtener/contactos/emergencia','RestController::obtenerContactosEmergencia', ['as' => 'api_obtenerContactosEmergencia']);
+$routes->post('/api/consultar/alertas/usuario','RestController::consultarAlertasUsuario', ['as' => 'api_consultarAlertasUsuario']);
+$routes->post('/api/obtener/alerta','RestController::obtenerAlerta', ['as' => 'api_obtenerAlerta']);
+$routes->post('/api/marcar/vista/alerta','RestController::marcarAlertaVista', ['as' => 'api_marcarAlertaVista']);
+$routes->post('/api/obtener/alerta/no/vistas','RestController::obtenerAlertasNoVistas', ['as' => 'api_obtenerAlertasNoVistas']);
+$routes->post('/api/registrar/alerta','RestController::registrarAlerta', ['as' => 'api_registrarAlerta']);
 
 
 /**

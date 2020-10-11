@@ -7,9 +7,10 @@ class UsuarioMasterSeeder extends \CodeIgniter\Database\Seeder
         $this->db->disableForeignKeyChecks;
 
         $data = [
-            'id_rol'            => 1,
+            'id_rol'            => 1, // Administrador
             'nombre'            => 'Administrador',
-            'apellido'          => 'demo',
+            'apellido'          => 'admin',
+            'numero_telefono'   => 'xxxx-xxxx   ',
             'email'             => 'admin@admin.com',
             'contrasenia'       => 'admin2020',
             'password_hash'     => password_hash('admin2020', PASSWORD_DEFAULT),

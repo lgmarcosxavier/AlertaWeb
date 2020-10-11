@@ -63,12 +63,14 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 - [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
 - xml (enabled by default - don't turn it off)
 
+## Conocer ubicación
+_Ver siguiente [enlace](https://www.coordenadas-gps.com/)._
+
 ## Comandos
 Desplegar aplicación
 ```
 php spark serve
 ```
-
 Migraciones
 ```
 php spark migrate:create [filename]
@@ -77,7 +79,6 @@ php spark migrate:rollback
 php spark migrate:refresh
 php spark migrate:status
 ```
-
 Seeders
 ```
 php spark db:seed NombreSeeder
@@ -133,9 +134,43 @@ __Sancion__.
 **06/10/2020**
 - Se ha creado la clase Seeder para los roles.
 - Se ha creado la clase Seeder para el usuario administrador.
+- Agregada registrar usuario administrador siguiente buenas prácicas de validaión. Ver [siguiente enlace](https://iniblog.xyz/blogpost/article/81/form-validation-example).
+- Al consultar usuarios, no aparecerá el botón de elimnar usuario, del que se encuentra logueado.
+
+**09/10/2020**
+- Cambiada respuesta del login de la api rest.
+- Realizado método api rest para el registro de usuarios.
+- Realizado método api rest para actualizar la información del usuario.
+- Realizado método api rest para conocer las sanciones realizadas al usuario.
+- Realizado método api rest para recupera todos los tipos de alerta.
+- Se ha reestructado algunas tablas en la base de datos, y modelos.
+- Se ha agregado la clase Seeder para crear departamentos, y municipios.
+- Realizado método api rest para obtener los departamentos.
+- Se ha agregado la consulta de deparmantos y municipos en la aplicación web.
+- Realizado método api rest para obtener los municipios según departamento.
+- Realizado método api rest para obtener los usuarios, con rol usuario.
+
+**10/10/2020**
+- Realizado método api rest para consultar usuarios.
+- Realizado método api rest para consultar usuarios por nombre.
+- Realizado método api rest para registrar mensaje personalizado al usuario.
+- Realizado método api rest para cosultar los mensajes personalizados del usuario.
+- Realizado método api rest para registrar usuario de confianza.
+- Realizado método pai rest para obtener los usuarios de confianza, de un usuario.
+- Realizado método pai rest para obtener los usuarios de confianza, de un usuario por nombre y apellido.
+- Realizado método api rest para obtener los contactos de emergencia.
+- Realizado método api rest para consultar las alertas del usuario.
+- Realizado método api rest para obtener los datos de la alerta.
+- Realizado método api rest para marcar como visto la notificacion de la alerta (al usuario confianza).
+- Realizado método api rest para obtener las alertas no vistas del usuario (considerando visto en notificacion alerta).
+- Realizado método api rest para registrar alerta, se considera las sanciones, y usuarios confianza para emitir una notificación.
+_NOTA:_ Se envviará notificación, tanto a usuarios que el que emitio alerta agregó a confianza, como también otros usuarios que agregaron a confianza a éste.
+
+## Configuración final
+_Ejecutar:_
 ```
 php spark db:seed RolesSeeder
 php spark db:seed UsuarioMasterSeeder
+php spark db:seed DepartamentoSeeder
+php spark db:seed MunicipioSeeder
 ```
-- Agregada registrar usuario administrador siguiente buenas prácicas de validaión. Ver [siguiente enlace](https://iniblog.xyz/blogpost/article/81/form-validation-example).
-- Al consultar usuarios, no aparecerá el botón de elimnar usuario, del que se encuentra logueado.

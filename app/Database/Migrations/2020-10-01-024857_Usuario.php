@@ -18,7 +18,8 @@ class Usuario extends Migration
 			'id_rol' => [
 				'type' 				=> 'INT',
 				'constraint' 		=> 5,
-				'unsigned' 			=> true
+				'unsigned' 			=> true,
+				'null'				=> false
 			],
 			'nombre' => [
 				'type'           	=> 'VARCHAR',
@@ -29,6 +30,11 @@ class Usuario extends Migration
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '50',
 				'null'				=> true
+			],
+			'numero_telefono' => [
+				'type'           	=> 'VARCHAR',
+				'constraint'     	=> '100',
+				'null'				=> false
 			],
 			'email' => [
 				'type'           	=> 'VARCHAR',

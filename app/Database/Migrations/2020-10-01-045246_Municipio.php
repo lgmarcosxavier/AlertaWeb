@@ -18,7 +18,8 @@ class Municipio extends Migration
 			'id_departamento' => [
 				'type' 				=> 'INT',
 				'constraint' 		=> 5,
-				'unsigned' 			=> true
+				'unsigned' 			=> true,
+				'null'				=> false,
 			],
 			'descripcion' => [
 				'type'           	=> 'VARCHAR',
@@ -33,11 +34,11 @@ class Municipio extends Migration
 			],
 			'fecha_commit' => [
 				'type'           	=> 'DATE',
-				'null'				=> false,
+				'null'				=> true,
 			],
 			'hora_commit' => [
 				'type'           	=> 'TIME',
-				'null'				=> false,
+				'null'				=> true,
 			]
 		]);
 

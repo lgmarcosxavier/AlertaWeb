@@ -15,26 +15,26 @@ class Alerta extends Migration
 				'unsigned' 			=> true,
 				'auto_increment' 	=> true
 			],
-			'fecha_emitida' => [
+			/*'fecha_emitida' => [
 				'type'           	=> 'DATE',
 				'null'				=> true,
-			],
+			],*/
 			'id_tipo_alerta' => [
 				'type' 				=> 'INT',
 				'constraint' 		=> 5,
 				'unsigned' 			=> true,
-				'null'				=> false
+				'null'				=> true
 			],
-			'id_municipio' => [
+			/*'id_municipio' => [
 				'type' 				=> 'INT',
 				'constraint' 		=> 5,
 				'unsigned' 			=> true,
-				'null'				=> false
-			],
+				'null'				=> true
+			],*/
 			'descripcion' => [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '200',
-				'null'				=> false
+				'null'				=> true
 			],
 			'longitud' => [
 				'type'           	=> 'VARCHAR',
@@ -75,7 +75,7 @@ class Alerta extends Migration
 
 		$this->forge->addKey('id', true);
 		$this->forge->addForeignKey('id_tipo_alerta', 'tipo_alerta', 'id');
-		$this->forge->addForeignKey('id_municipio', 'municipio', 'id');
+		//$this->forge->addForeignKey('id_municipio', 'municipio', 'id');
 		$this->forge->addForeignKey('id_usuario', 'usuario', 'id');
 		$this->forge->createTable('alerta');
 

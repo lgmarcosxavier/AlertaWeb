@@ -26,11 +26,11 @@ class Departamento extends Migration
 			],
 			'fecha_commit' => [
 				'type'           	=> 'DATE',
-				'null'				=> false,
+				'null'				=> true,
 			],
 			'hora_commit' => [
 				'type'           	=> 'TIME',
-				'null'				=> false,
+				'null'				=> true,
 			]
 		]);
 

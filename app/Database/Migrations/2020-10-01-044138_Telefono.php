@@ -30,6 +30,14 @@ class Telefono extends Migration
 				'constraint'     	=> '1',
 				'null'				=> false,
 				'default'			=> 1
+			],
+			'fecha_commit' => [
+				'type'           	=> 'DATE',
+				'null'				=> false,
+			],
+			'hora_commit' => [
+				'type'           	=> 'TIME',
+				'null'				=> false,
 			]
 		]);
 
