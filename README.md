@@ -174,3 +174,26 @@ php spark db:seed UsuarioMasterSeeder
 php spark db:seed DepartamentoSeeder
 php spark db:seed MunicipioSeeder
 ```
+
+## Subida proyecto CodeIgniter en 000Webhost
+[000webhost](https://www.000webhost.com/)
+Ver archivo.
+
+## Soluciones Server
+_No registraba_.
+He cambiado en el archivo _app/ConfigDatabase.php_
+```
+public $default = [
+    ...
+    'strictOn' => true,
+    ...
+]
+```
+Además tambien he ejecutado las instrucciones SQL en la base de datos:
+```
+SET SQL_MODE = "";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO"
+SET AUTOCOMMIT = 0
+SET time_zone = "+00:00"
+```
+Con esto también se ha solucioanado que a veces si encontraba el usuario y otras veces no lo identificaba xD.
