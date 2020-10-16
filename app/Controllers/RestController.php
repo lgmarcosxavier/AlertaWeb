@@ -2,7 +2,6 @@
  
 namespace App\Controllers;
 
-use App\Database\Migrations\NotificacionAlerta;
 use App\Models\AlertaModel;
 use App\Models\ContactoEmergenciaModel;
 use App\Models\DepartamentoModel;
@@ -14,7 +13,6 @@ use App\Models\TelefonoModel;
 use App\Models\TipoAlertaModel;
 use App\Models\UsuarioConfianzaModel;
 use App\Models\UsuarioModel;
-use CodeIgniter\HTTP\Response;
 use Config\Services;
 use CodeIgniter\RESTful\ResourceController;
  
@@ -53,33 +51,31 @@ class RestController extends ResourceController
             ->first();
 
         if ( is_null($usuario) || ! password_verify($password, $usuario['password_hash'])) {
-			/*return $this->genericResponse(null, array(
-                "mensaje" => "Usuario no identificado"
-            ), 500);*/
-
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'Usuario no identificado.',
-                "errors"    =>  array(),
-                'data'      => array() // json_encode(['id' => 0])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'Usuario no identificado';
+            $respuesta['erros'] = array();
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
         }
         
-        //return $this->genericResponse($usuario, null, 200);
         if ( $usuario['id_rol'] == 2 ){
-            return $this->respond(array(
-                "codigo"    => '1',
-                "mensaje"   => 'Usuario identificado.',
-                "errors"    =>  array(),
-                'data'      =>  $usuario //json_encode([$usuario])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 1;
+            $respuesta['mensaje'] = 'Usuario identificado';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = $usuario;
+            
+            return $this->respond($respuesta);
         }else{
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No tienes acceso a la aplicación.',
-                "errors"    =>  array(),
-                'data'      => array() // json_encode([array()])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No tienes acceso a la aplicación.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
         }
     }
 
@@ -141,21 +137,25 @@ class RestController extends ResourceController
         $model = new UsuarioModel();
 
         if ( !$input ){
-            /*return $this->genericResponse(null, array(
-                "mensaje" => 'Verfique corroe y contraeña'
-            ), 500);*/
-
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido registrar el usuario',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido registrar el usuario';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
         }else{
             $exito = $model->save([
-                'id_rol'            => 2, // Usuario
+                'id_rol'            => 2,
                 'nombre'            => $this->request->getVar('nombre'),
                 'apellido'          => $this->request->getVar('apellido'),
                 'numero_telefono'   => $this->request->getVar('numero_telefono'),
@@ -172,25 +172,22 @@ class RestController extends ResourceController
                 'hora_commit'       => date('H:i:s')
             ]);
 
-             /*return $this->genericResponse(null, array(
-                'mensaje' => 'Usuario registrado correctamente.'
-            ), 200);*/ 
-
             if ( $exito ){
-                // buscar usuario
-                return $this->respond(array(
-                    "codigo"    => '1',
-                    "mensaje"   => 'Usuario registrado correctamente',
-                    "errors"    =>  array(),
-                    'data'      =>  array() //json_encode([]);
-                ));
+                $respuesta = null;
+                $respuesta['codigo'] = 1;
+                $respuesta['mensaje'] = 'Usuario registrado correctamente';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = null;
+            
+                return $this->respond($respuesta);
             }else{
-                return $this->respond(array(
-                    "codigo"    => '0',
-                    "mensaje"   => 'No se ha podido registrar el usuario',
-                    "errors"    =>  array(),
-                    'data'      =>  array() // json_encode([])
-                ));
+                $respuesta = null;
+                $respuesta['codigo'] = 0;
+                $respuesta['mensaje'] = 'No se ha podido registrar el usuario';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = null;
+            
+                return $this->respond($respuesta);
             }
         }
     }
@@ -257,13 +254,21 @@ class RestController extends ResourceController
     
             if ( !$input ){
                 $validation = \Config\Services::validation();
-    
-                return $this->respond(array(
-                    "codigo"    => '0',
-                    "mensaje"   => 'No se ha podido actualizar la información del usuario.',
-                    'errors'    =>  $validation->getErrors(),
-                    'data'      =>  array()
-                ));
+            
+                $erroresValidation = array();
+                if ( $validation->getErrors() ){
+                    foreach($validation->getErrors() as $error){
+                        $erroresValidation[] = $error;
+                    }
+                }
+
+                $respuesta = null;
+                $respuesta['codigo'] = 0;
+                $respuesta['mensaje'] = 'No se ha podido registrar el usuario';
+                $respuesta['errors'] = $erroresValidation;
+                $respuesta['data'] = null;
+                
+                return $this->respond($respuesta);
             }else{
 
                 $usuario = $model->find($id_usuario);
@@ -287,36 +292,40 @@ class RestController extends ResourceController
                     ]);
         
                     if ( $exito ){
-                        return $this->respond(array(
-                            "codigo"    => '1',
-                            "mensaje"   => 'Usuario actualizado correctamente.',
-                            "errors"    =>  array(),
-                            'data'      =>  array() //json_encode([]);
-                        ));
+                        $respuesta = null;
+                        $respuesta['codigo'] = 1;
+                        $respuesta['mensaje'] = 'Usuario actualizado correctamente';
+                        $respuesta['errors'] = array();
+                        $respuesta['data'] = null;
+                    
+                        return $this->respond($respuesta);
                     }else{
-                        return $this->respond(array(
-                            "codigo"    => '0',
-                            "mensaje"   => 'No se ha podido actualizaro al usuario.',
-                            "errors"    =>  array(),
-                            'data'      =>  array() // json_encode([])
-                        ));
+                        $respuesta = null;
+                        $respuesta['codigo'] = 0;
+                        $respuesta['mensaje'] = 'No se pudo actualizar al usuario.';
+                        $respuesta['errors'] = array();
+                        $respuesta['data'] = null;
+                    
+                        return $this->respond($respuesta);
                     }
                 }else{
-                    return $this->respond(array(
-                        "codigo"    => '0',
-                        "mensaje"   => 'No se ha encontrado al usuario a actualizar.',
-                        "errors"    =>  array(),
-                        'data'      =>  array() // json_encode([])
-                    ));
+                    $respuesta = null;
+                    $respuesta['codigo'] = 0;
+                    $respuesta['mensaje'] = 'No se ha encontrado al usuario a actualizar.';
+                    $respuesta['errors'] = array();
+                    $respuesta['data'] = null;
+                
+                    return $this->respond($respuesta);
                 }
             }
         }else{
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha reconocido al usuario a actualizar.',
-                "errors"    =>  array(),
-                'data'      =>  array() // json_encode([])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha reconocido al usuario a actualizar.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = null;
+        
+            return $this->respond($respuesta);
         }
     }
 
@@ -329,12 +338,13 @@ class RestController extends ResourceController
 
         $tiposAlerta = $modelTipoAlerta->where('estado', 1)->findAll();
 
-        return $this->respond(array(
-            "codigo"    => '1',
-            "mensaje"   => 'Se han recuperado tipos de alerta.',
-            "errors"    =>  array(),
-            'data'      =>  $tiposAlerta // json_encode([])
-        ));
+        $respuesta = null;
+        $respuesta['codigo'] = 1;
+        $respuesta['mensaje'] = 'Se han recuperado tipos de alerta.';
+        $respuesta['errors'] = array();
+        $respuesta['data'] = $tiposAlerta;
+    
+        return $this->respond($respuesta);
     }
 
     /**
@@ -346,12 +356,13 @@ class RestController extends ResourceController
 
         $departamentos = $modelDepartamentos->where('estado', 1)->findAll();
 
-        return $this->respond(array(
-            "codigo"    => '1',
-            "mensaje"   => 'Se han recuperado departamentos.',
-            "errors"    =>  array(),
-            'data'      =>  $departamentos // json_encode([])
-        ));
+        $respuesta = null;
+        $respuesta['codigo'] = 1;
+        $respuesta['mensaje'] = 'Se han recuperado departamentos.';
+        $respuesta['errors'] = array();
+        $respuesta['data'] = $departamentos;
+    
+        return $this->respond($respuesta);
     }
 
     /**
@@ -368,20 +379,22 @@ class RestController extends ResourceController
                 ->where('id_departamento', $id_departamento)
                 ->findAll();
     
-            return $this->respond(array(
-                "codigo"    => '1',
-                "mensaje"   => 'Se han recuperado municipios.',
-                "errors"    =>  array(),
-                'data'      =>  $municipios // json_encode([])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 1;
+            $respuesta['mensaje'] = 'Se han recuperado municipios.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = $municipios;
+        
+            return $this->respond($respuesta);
         }
 
-        return $this->respond(array(
-            "codigo"    => '0',
-            "mensaje"   => 'No se ha identificar el departamento.',
-            "errors"    =>  array(),
-            'data'      =>  array() // json_encode([])
-        ));
+        $respuesta = null;
+        $respuesta['codigo'] = 0;
+        $respuesta['mensaje'] = 'No se ha identificar el departamento.';
+        $respuesta['errors'] = array();
+        $respuesta['data'] = array();
+    
+        return $this->respond($respuesta);
     }
 
     /**
@@ -395,12 +408,13 @@ class RestController extends ResourceController
             ->where('id_rol', 2)
             ->findAll();
 
-        return $this->respond(array(
-            "codigo"    => '1',
-            "mensaje"   => 'Se han recuperado usuarios.',
-            "errors"    =>  array(),
-            'data'      =>  $usuarios // json_encode([])
-        ));
+        $respuesta = null;
+        $respuesta['codigo'] = 1;
+        $respuesta['mensaje'] = 'Se han recuperado usuarios.';
+        $respuesta['errors'] = array();
+        $respuesta['data'] = $usuarios;
+    
+        return $this->respond($respuesta);
     }
 
     /**
@@ -426,12 +440,13 @@ class RestController extends ResourceController
             $usuarios = $tmp;
         }
 
-        return $this->respond(array(
-            "codigo"    => '1',
-            "mensaje"   => 'Se han recuperado usuarios.',
-            "errors"    =>  array(),
-            'data'      =>  $usuarios // json_encode([])
-        ));
+        $respuesta = null;
+        $respuesta['codigo'] = 1;
+        $respuesta['mensaje'] = 'Se han recuperado usuarios.';
+        $respuesta['errors'] = array();
+        $respuesta['data'] = $usuarios;
+    
+        return $this->respond($respuesta);
     }
 
     /**
@@ -467,13 +482,21 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido registrar el mensaje personalizado.',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido registrar el mensaje personalizado.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
         }else{
             $exito = $model->save([
                 'id_usuario'     => $this->request->getVar('id_usuario'),
@@ -485,19 +508,21 @@ class RestController extends ResourceController
             ]);
 
             if ( $exito ){
-                return $this->respond(array(
-                    "codigo"    => '1',
-                    "mensaje"   => 'Mensaje personalizado registrado correctamente.',
-                    "errors"    =>  array(),
-                    "data"      =>  array() //json_encode([]);
-                ));
+                $respuesta = null;
+                $respuesta['codigo'] = 1;
+                $respuesta['mensaje'] = 'Mensaje personalizado registrado correctamente.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = null;
+            
+                return $this->respond($respuesta);
             }else{
-                return $this->respond(array(
-                    "codigo"    => '0',
-                    "mensaje"   => 'No se ha podido registrar el mensaje personalizado.',
-                    "errors"    =>  array(),
-                    "data"      =>  array() // json_encode([])
-                ));
+                $respuesta = null;
+                $respuesta['codigo'] = 0;
+                $respuesta['mensaje'] = 'No se ha podido registrar el mensaje personalizado.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = null;
+            
+                return $this->respond($respuesta);
             }
         }
     }
@@ -516,20 +541,22 @@ class RestController extends ResourceController
                 ->where('id_usuario', $id_usuario)
                 ->findAll();
     
-            return $this->respond(array(
-                "codigo"    => '1',
-                "mensaje"   => 'Se han recuperado mensajes personalizados.',
-                "errors"    =>  array(),
-                'data'      =>  $mensajesPersonalizado // json_encode([])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 1;
+            $respuesta['mensaje'] = 'Se han recuperado mensajes personalizados.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = $mensajesPersonalizado;
+        
+            return $this->respond($respuesta);
         }
 
-        return $this->respond(array(
-            "codigo"    => '0',
-            "mensaje"   => 'No se ha identificar al usuario.',
-            "errors"    =>  array(),
-            'data'      =>  array() // json_encode([])
-        ));
+        $respuesta = null;
+        $respuesta['codigo'] = 0;
+        $respuesta['mensaje'] = 'No se ha identificar al usuario.';
+        $respuesta['errors'] = array();
+        $respuesta['data'] = array();
+    
+        return $this->respond($respuesta);
     }
 
     /**
@@ -558,13 +585,21 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido registrar el usuario de confianza.',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido registrar el usuario de confianza.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
         }else{
             $exito = $model->save([
                 'id_usuario'            => $this->request->getVar('id_usuario'),
@@ -575,19 +610,21 @@ class RestController extends ResourceController
             ]);
 
             if ( $exito ){
-                return $this->respond(array(
-                    "codigo"    => '1',
-                    "mensaje"   => 'Usuario confianza registrado correctamente.',
-                    "errors"    =>  array(),
-                    "data"      =>  array() //json_encode([]);
-                ));
+                $respuesta = null;
+                $respuesta['codigo'] = 1;
+                $respuesta['mensaje'] = 'Usuario confianza registrado correctamente.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = null;
+            
+                return $this->respond($respuesta);
             }else{
-                return $this->respond(array(
-                    "codigo"    => '0',
-                    "mensaje"   => 'No se ha podido registrar el usuario como de confianza.',
-                    "errors"    =>  array(),
-                    "data"      =>  array() // json_encode([])
-                ));
+                $respuesta = null;
+                $respuesta['codigo'] = 0;
+                $respuesta['mensaje'] = 'No se ha podido registrar el usuario como de confianza.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = null;
+            
+                return $this->respond($respuesta);
             }
         }
     }
@@ -611,13 +648,21 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido recuperar los usuarios de confianza.',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido recuperar los usuarios de confianza.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = array();
+            
+            return $this->respond($respuesta);
         }else{
             $usuarios = array();
             $usuariosConfianza = $model->where('estado', 1)
@@ -635,12 +680,13 @@ class RestController extends ResourceController
                 }
             }
     
-            return $this->respond(array(
-                "codigo"    => '1',
-                "mensaje"   => 'Se han recuperado lo usuarios con confianza.',
-                "errors"    =>  array(),
-                'data'      =>  $usuarios // json_encode([])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 1;
+            $respuesta['mensaje'] = 'Se han recuperado lo usuarios con confianza.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = array();
+            
+            return $this->respond($respuesta);
         }
     }
 
@@ -669,13 +715,21 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido recuperar los usuarios de confianza.',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido recuperar los usuarios de confianza.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = array();
+            
+            return $this->respond($respuesta);
         }else{
             $usuarios = array();
             $usuariosConfianza = $model->where('estado', 1)
@@ -697,12 +751,13 @@ class RestController extends ResourceController
                 }
             }
     
-            return $this->respond(array(
-                "codigo"    => '1',
-                "mensaje"   => 'Se han recuperado lo usuarios con confianza.',
-                "errors"    =>  array(),
-                'data'      =>  $usuarios // json_encode([])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 1;
+            $respuesta['mensaje'] = 'Se han recuperado lo usuarios con confianza.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = $usuarios;
+            
+            return $this->respond($respuesta);
         }
     }
 
@@ -738,12 +793,13 @@ class RestController extends ResourceController
             $resultado[] = $item;
         }
 
-        return $this->respond(array(
-            "codigo"    => '1',
-            "mensaje"   => 'Se han recuperado los contactos.',
-            "errors"    =>  array(),
-            'data'      =>  $resultado // json_encode([])
-        ));
+        $respuesta = null;
+        $respuesta['codigo'] = 1;
+        $respuesta['mensaje'] = 'Se han recuperado los contactos.';
+        $respuesta['errors'] = array();
+        $respuesta['data'] = $resultado;
+        
+        return $this->respond($respuesta);
     }
 
     /**
@@ -756,45 +812,24 @@ class RestController extends ResourceController
         if ( $id_usuario ){
             $modelSanciones = new SancionModel();
 
-            // FORMA 1
-            /*$result = $modelSanciones->findAll();//->where('id_usuario', $id_usuario);
-            $sanciones = array();
-            $conteo = 0;
-
-            foreach($result as $r){
-                if ( $r['id_usuario'] == $id_usuario ){
-                    $sanciones[] = $r;
-                    $conteo++;
-                }
-            }
-
-            //if ( $sanciones ){
-            if ( $conteo >= 0){
-                return $this->respond(array(
-                    "codigo"    => '1',
-                    "mensaje"   => 'Sanciones del usuario obtenidas.',
-                    'data'      =>  $sanciones // json_encode([$sanciones])
-                ));
-            }
-            */
-
-            // FORMA 2: (mas optimizado)
             $sanciones = $modelSanciones->where('id_usuario', $id_usuario)->findAll();
 
-            return $this->respond(array(
-                "codigo"    => '1',
-                "mensaje"   => 'Sanciones del usuario obtenidas.',
-                "errors"    =>  array(),
-                'data'      =>  $sanciones // json_encode([$sanciones])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 1;   
+            $respuesta['mensaje'] = 'Sanciones del usuario obtenidas.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = $sanciones;
+            
+            return $this->respond($respuesta);
         }
 
-        return $this->respond(array(
-            "codigo"    => '0',
-            "mensaje"   => 'No se puedo encontrar información de sanciones.',
-            "errors"    =>  array(),
-            'data'      =>  array() // json_encode([])
-        ));
+        $respuesta = null;
+        $respuesta['codigo'] = 0;   
+        $respuesta['mensaje'] = 'No se puedo encontrar información de sanciones.';
+        $respuesta['errors'] = array();
+        $respuesta['data'] = array();
+        
+        return $this->respond($respuesta);
     }
 
     public function consultarAlertasUsuario()
@@ -813,22 +848,31 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha obtener tu alertas.',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha obtener tu alertas.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = array();
+            
+            return $this->respond($respuesta);
         }else{
             $alertas = $model->where('estado', 1)->where('id_usuario', $this->request->getVar('id_usuario'))->findAll();
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'Se han recuperado alertas del usuario.',
-                "errors"    =>  array(),
-                "data"      =>  $alertas // json_encode([])
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 1;
+            $respuesta['mensaje'] = 'Se han recuperado alertas del usuario.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = $alertas;
+            
+            return $this->respond($respuesta);
         }
     }
 
@@ -848,31 +892,40 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido recuperar la alerta.',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido recuperar la alerta.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
         }else{
             $alerta = $model->find($this->request->getVar('id_alerta'));
 
             if ( $alerta ){
-                return $this->respond(array(
-                    "codigo"    => '1',
-                    "mensaje"   => 'Se han recuperado la alerta solicitada.',
-                    "errors"    =>  array(),
-                    'data'      =>  $alerta // json_encode([])
-                ));
+                $respuesta = null;
+                $respuesta['codigo'] = 1;
+                $respuesta['mensaje'] = 'Se han recuperado la alerta solicitada.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = $alerta;
+                
+                return $this->respond($respuesta);
             }else{
-                return $this->respond(array(
-                    "codigo"    => '0',
-                    "mensaje"   => 'No se ha encontrado la alerta solicitada.',
-                    "errors"    =>  array(),
-                    'data'      =>  array() // json_encode([])
-                ));
-
+                $respuesta = null;
+                $respuesta['codigo'] = 0;
+                $respuesta['mensaje'] = 'No se ha encontrado la alerta solicitada.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = $alerta;
+                
+                return $this->respond($respuesta);
             }
         }
     }
@@ -903,13 +956,21 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido marcar la alerta como vista.',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido marcar la alerta como vista.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
         }else{
             $alerta = $model->where('id_alerta', $this->request->getVar('id_alerta'))
                 ->where('id_usuario_receptor', $this->request->getVar('id_usuario'))->first();
@@ -922,28 +983,30 @@ class RestController extends ResourceController
                 ]);
 
                 if ( $exito ){
-                    return $this->respond(array(
-                        "codigo"    => '1',
-                        "mensaje"   => 'Se ha marcado la alerta como vista.',
-                        "errors"    =>  array(),
-                        'data'      =>  array() // json_encode([])
-                    ));
+                    $respuesta = null;
+                    $respuesta['codigo'] = 1;   
+                    $respuesta['mensaje'] = 'Se ha marcado la alerta como vista.';
+                    $respuesta['errors'] = array();
+                    $respuesta['data'] = null;
+                    
+                    return $this->respond($respuesta);
                 }else{
-                    return $this->respond(array(
-                        "codigo"    => '0',
-                        "mensaje"   => 'No se ha podido marcar como vista la alerta.',
-                        "errors"    =>  array(),
-                        'data'      =>  array() // json_encode([])
-                    ));
+                    $respuesta = null;
+                    $respuesta['codigo'] = 0;   
+                    $respuesta['mensaje'] = 'No se ha podido marcar como vista la alerta.';
+                    $respuesta['errors'] = array();
+                    $respuesta['data'] = null;
+                    
+                    return $this->respond($respuesta);
                 }
             }else{
-                return $this->respond(array(
-                    "codigo"    => '0',
-                    "mensaje"   => 'No se ha encontrado la alerta de la notificación.',
-                    "errors"    =>  array(),
-                    'data'      =>  array() // json_encode([])
-                ));
-
+                $respuesta = null;
+                $respuesta['codigo'] = 0;   
+                $respuesta['mensaje'] = 'No se ha encontrado la alerta de la notificación.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = null;
+                
+                return $this->respond($respuesta);
             }
         }
     }
@@ -969,13 +1032,21 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido obtener las alertas no vistas.',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido obtener las alertas no vistas.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = array();
+            
+            return $this->respond($respuesta);
         }else{
             $alertas = array();
             $notificaciones = $modelNotificacionAlerta
@@ -991,21 +1062,22 @@ class RestController extends ResourceController
                         $alertas[] = $alerta;
                     }
                 }
-                
-                return $this->respond(array(
-                    "codigo"    => '1',
-                    "mensaje"   => 'Se han recuperado las alertas no vistas.',
-                    "errors"    =>  array(),
-                    'data'      =>  $alertas // json_encode([])
-                ));
-            }else{
-                return $this->respond(array(
-                    "codigo"    => '0',
-                    "mensaje"   => 'No se ha encontrado alertas no vistas.',
-                    "errors"    =>  array(),
-                    'data'      =>  array() // json_encode([])
-                ));
 
+                $respuesta = null;
+                $respuesta['codigo'] = 1;
+                $respuesta['mensaje'] = 'Se han recuperado las alertas no vistas.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = $alertas;
+                
+                return $this->respond($respuesta);
+            }else{
+                $respuesta = null;
+                $respuesta['codigo'] = 0;
+                $respuesta['mensaje'] = 'No se ha encontrado alertas no vistas.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = array();
+                
+                return $this->respond($respuesta);
             }
         }
     }
@@ -1067,13 +1139,21 @@ class RestController extends ResourceController
 
         if ( !$input ){
             $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
 
-            return $this->respond(array(
-                "codigo"    => '0',
-                "mensaje"   => 'No se ha podido registrar la alerta',
-                'errors'    =>  $validation->getErrors(),
-                'data'      =>  array()
-            ));
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido registrar la alerta';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
         }else{
             $id_usuario = $this->request->getVar('id_usuario');
             $permitirRegistrar = true;
@@ -1087,12 +1167,13 @@ class RestController extends ResourceController
                     $ultimaSancion = $sanciones[count($sanciones)-1]; // obtener la ultima sancion
                     if ( $ultimaSancion ){
                         // NOTA: Acá se validará la ultima fecha de la sanción realizada.
-                        return $this->respond(array(
-                            "codigo"    => '0',
-                            "mensaje"   => 'No se puede realizar la alerta, porque tienes sanciones.',
-                            "errors"    =>  array(),
-                            "data"      =>  array() // json_encode([])
-                        ));
+                        $respuesta = null;
+                        $respuesta['codigo'] = 0;
+                        $respuesta['mensaje'] = 'No se puede realizar la alerta, porque tienes sanciones.';
+                        $respuesta['errors'] = array();
+                        $respuesta['data'] = null;
+                        
+                        return $this->respond($respuesta);
                     }
                 }else{
                     // si tiene, pero es menor a 3, permitir registrar la alerta
@@ -1173,43 +1254,31 @@ class RestController extends ResourceController
                 }
     
                 if ( $exito ){
-                    return $this->respond(array(
-                        "codigo"    => '1',
-                        "mensaje"   => 'Alerta registrado correctamente.',
-                        "errors"    =>  array(),
-                        "data"      =>  array() //json_encode([]);
-                    ));
+                    $respuesta = null;
+                    $respuesta['codigo'] = 1;
+                    $respuesta['mensaje'] = 'Alerta registrado correctamente.';
+                    $respuesta['errors'] = array();
+                    $respuesta['data'] = null;
+                    
+                    return $this->respond($respuesta);
                 }else{
-                    return $this->respond(array(
-                        "codigo"    => '0',
-                        "mensaje"   => 'No se ha podido registrar la alerta.',
-                        "errors"    =>  array(),
-                        "data"      =>  array() // json_encode([])
-                    ));
+                    $respuesta = null;
+                    $respuesta['codigo'] = 0;
+                    $respuesta['mensaje'] = 'No se ha podido registrar la alerta.';
+                    $respuesta['errors'] = array();
+                    $respuesta['data'] = null;
+                    
+                    return $this->respond($respuesta);
                 }
             }else{
-                return $this->respond(array(
-                    "codigo"    => '0',
-                    "mensaje"   => 'No se ha podido registrar la alerta.',
-                    "errors"    =>  array(),
-                    "data"      =>  array() // json_encode([])
-                ));
+                $respuesta = null;
+                $respuesta['codigo'] = 0;
+                $respuesta['mensaje'] = 'No se ha podido registrar la alerta.';
+                $respuesta['errors'] = array();
+                $respuesta['data'] = null;
+                
+                return $this->respond($respuesta);
             }
-        }
-    }
-
-    private function genericResponse($data, $msj, $code)
-    {
-        if ($code == 200) {
-            return $this->respond(array(
-                "data" => $data,
-                "code" => $code
-            )); //, 404, "No hay nada"
-        } else {
-            return $this->respond(array(
-                "msj" => $msj,
-                "code" => $code
-            ));
         }
     }
 }
