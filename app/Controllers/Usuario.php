@@ -1,6 +1,7 @@
 <?php 
 namespace App\Controllers;
 
+use App\Models\UsuarioConfianzaModel;
 use App\Models\UsuarioModel;
 use CodeIgniter\Controller;
 
@@ -12,13 +13,22 @@ class Usuario extends Controller
         $data['page'] = 'usuario-administrador';
         
         $model = new UsuarioModel();
-        $usuarios = $model->where('estado', 1)->findAll();
+        $usuarios = $model->where('estado', 1)
+            ->where('id_rol', 1)
+            ->findAll();
         
         $data['usuarios'] = $usuarios;
 
 
         return view('pages/usuario/administrador/index', $data);
 	}
+
+    //--------------------------------------------------------------------
+
+    public function usuarios()
+    {
+        
+    }
 
     //--------------------------------------------------------------------
 
@@ -110,6 +120,33 @@ class Usuario extends Controller
         return redirect()->back();
     }
 
+    //--------------------------------------------------------------------
 
+    public function darBajaUsuario($id = null)
+    {
+        if ( $id ){
+            $model = new UsuarioModel();
+            $usuario = $model->find($id);
+
+            if ( $usuario ){
+                $model->update($id, [
+                    'estado' => 0
+                ]);
+
+                $_SESSION['mensaje'] = 'El usuario se ha dado de baja';
+                return redirect()->to(route_to('usuariosCliente'));
+            }
+        }
+        
+        $_SESSION['mensaje'] = 'No se pudo eliminar al usuario';
+        return redirect()->back();
+    }
+
+    //--------------------------------------------------------------------
+
+    public function verUsuariosConfianza($id = null)
+    {
+        
+    }
     //--------------------------------------------------------------------
 }
