@@ -8,7 +8,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tipo aletas</h1>
+                <h1>Administradores</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item"><a href="<?= route_to('usuarioAdmininistrador'); ?>">Usuario</a></div>
                     <div class="breadcrumb-item">Consultar</div>
@@ -47,7 +47,7 @@
                                             <?php foreach($usuarios as $usuario) :?>
                                                 <tr>
                                                     <td><?= $usuario['id'] ?></td>
-                                                    <td><?php echo $usuario['nombre'] . $usuario['apellido']; ?></td>
+                                                    <td><?php echo $usuario['nombre'] . ' ' . $usuario['apellido']; ?></td>
                                                     <td><?php echo $usuario['email']; ?></td>
                                                     <td><?= $usuario['direccion'] ?></td>
                                                     <td>

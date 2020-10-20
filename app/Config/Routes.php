@@ -41,11 +41,15 @@ $routes->post('tipoAlerta/actualizar/(:num)', 'TipoAlerta::actualizar/$1', ['as'
 $routes->post('tipoAlerta/eliminar/(:num)', 'TipoAlerta::destroy/$1', ['as' => 'tipoAlerta_eliminar']);
 # Usuarios administradores
 $routes->get('usuario/administrador', 'Usuario::administradores', ['as' => 'usuarioAdmininistrador']);
+$routes->get('usuario/usuarios', 'Usuario::usuarios', ['as' => 'usuariosCliente']);
 $routes->get('usuario/administrador/crear', 'Usuario::crearAdministrador', ['as' => 'usuarioAdministrador_crear']);
 $routes->post('usuario/administrador/registrar', 'Usuario::registrarAdministrador', ['as' => 'usuarioAdministrador_registrar']);
 $routes->get('usuario/administrador/editar/(:num)', 'Usuario::editarAdministrador/$1', ['as' => 'usuarioAdministrador_editar']);
 
 $routes->post('usuario/administrador/eliminar/(:num)', 'Usuario::eliminarAdministrador/$1', ['as' => 'usuarioAdministrador_eliminar']);
+$routes->post('usuario/usuarios/eliminar/(:num)', 'Usuario::darBajaUsuario/$1', ['as' => 'usuarioUsuarios_eliminar']);
+$routes->get('usuario/usuarios/confianza/(:num)', 'Usuario::verUsuariosConfianza/$1', ['as' => 'usuariosConfianza_usuario']);
+$routes->get('mensajesPersonalizados', 'MensajesPersonalizados::index', ['as' => 'mensajesPersonalizados']);
 
 
 /*
