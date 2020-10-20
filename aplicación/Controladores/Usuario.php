@@ -146,7 +146,67 @@ class Usuario extends Controller
 
     public function verUsuariosConfianza($id = null)
     {
+        if ( $id ){
+            $model = new UsuarioModel();
+            $usuario = $model->find($id);
+
+            if ( $usuario ){
+                // ver los usuarios confianza
+                $modelUsuarioConfianza = new UsuarioConfianzaModel();
+                $uA = $modelUsuarioConfianza->where('estado', 1)->where('id_usuario', $usuario['id'])->findAll();
+                //$uB = $modelUsuarioConfianza->where('estado', 1)->where('id_usuario_confianza', $usuario['id'])->findAll();
+                $usuariosLimpios = array();
+
+                foreach($uA as $a){
+                    $permitirRegistrar = true;
+
+                    // verificamos que ese id_usuario no esta agregada aun.
+                    foreach($usuariosLimpios as $limpio){
+                        if ( $limpio['id_usuario'] == $a['id_usuario_confianza'] ){
+                            $permitirRegistrar = false;
+                            break;
+                        }
+                    }
+
+                    if ( $permitirRegistrar ){
+                        $item['id_usuario'] = $a['id_usuario_confianza'];
+                        $usuariosLimpios[] = $item;
+                    }
+                }
+
+                /*foreach($uB as $b){
+                    $permitirRegistrar = true;
+
+                    // verificamos que ese id_usuario no esta agregada aun.
+                    foreach($usuariosLimpios as $limpio){
+                        if ( $limpio['id_usuario'] == $b['id_usuario'] ){
+                            $permitirRegistrar = false;
+                            break;
+                        }
+                    }
+
+                    if ( $permitirRegistrar ){
+                        $item['id_usuario'] = $b['id_usuario'];
+                        $usuariosLimpios[] = $item;
+                    }
+                }*/
+
+                $listaConfianza = array();
+                foreach($usuariosLimpios as $u){
+                    $aux_usuario = $model->find($u['id_usuario']);
+
+                    $listaConfianza[] = $aux_usuario;
+                }
+                
+                $data['usuarios'] = $listaConfianza;
+                $data['usuario'] = $usuario;
+                return view('pages/usuario/usuarios/confianza', $data, $usuario);
+            }
+        }
         
+        $_SESSION['mensaje'] = 'No se pudo visualizar los usuarios confianza.';
+        return redirect()->back();
+
     }
     //--------------------------------------------------------------------
 }
