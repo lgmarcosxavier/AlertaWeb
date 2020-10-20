@@ -52,6 +52,8 @@ $routes->get('usuario/usuarios/confianza/(:num)', 'Usuario::verUsuariosConfianza
 $routes->get('mensajesPersonalizados', 'MensajesPersonalizados::index', ['as' => 'mensajesPersonalizados']);
 
 
+$routes->get('ContactosEmergenciaConsultar', 'Contacto_Emergencia::index', ['as' => 'ContactoEmergencia_index']);
+
 /*
 * ------------------------------------
 * Api Rest
