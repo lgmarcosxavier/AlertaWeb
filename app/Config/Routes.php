@@ -87,6 +87,7 @@ $routes->post('/api/obtener/alerta','RestController::obtenerAlerta', ['as' => 'a
 $routes->post('/api/marcar/vista/alerta','RestController::marcarAlertaVista', ['as' => 'api_marcarAlertaVista']);
 $routes->post('/api/obtener/alerta/no/vistas','RestController::obtenerAlertasNoVistas', ['as' => 'api_obtenerAlertasNoVistas']);
 $routes->post('/api/registrar/alerta','RestController::registrarAlerta', ['as' => 'api_registrarAlerta']);
+$routes->post('/api/eliminar/usuario/confianza','RestController::eliminarUsuarioConfianza', ['as' => 'api_eliminarUsuarioConfianza']);
 
 
 /**
