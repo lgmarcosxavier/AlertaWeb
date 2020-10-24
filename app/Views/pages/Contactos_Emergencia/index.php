@@ -19,32 +19,37 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                        <div class="row">
+                            <a class="btn btn-info" href="<?= route_to('contactoEmergencia_crear') ?>">Crear nuevo</a>
+                        </div>
                         <div class="card-header"></div>
                         <div class="card-body">
                             <div class="table-responsive">
                             <table class="table table-striped" id="table-1">
                                 <thead>                                 
                                 <tr>
-                                    <th class="text-center">
-                                    #
-                                    </th>
-                                    <th>ID</th>
+                                    <th class="text-center">#</th>
                                     <th>Nombre Contacto</th>
                                     <th>Telefono</th>
+                                    <th>Operaciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1; ?>
                                     <?php foreach($contactos_emergencias as $contacto_emergencia) :?>
                                         <tr>
-                                            <td><?php echo $contacto_emergencia['id']; ?></td>
+                                            <td><?php echo $i++ ?></td>
                                             <td><?php echo $contacto_emergencia['nombre']; ?></td>
                                             <td><?php echo $contacto_emergencia['telefono']; ?></td>
                                             <td>
-                                                <?php if ($contacto_emergencia['estado'] == 1){ ?> 
-                                                    <div class="badge badge-success">Activo</div>
-                                                <?php }else{ ?>
-                                                    <div class="badge badge-danger">Inactivo</div>
-                                                <?php } ?>
+                                            <a href="<?= route_to('ContactoEmergencia_editar', $contacto_emergencia['id']) ?>" class="btn btn-info">Editar</a>
+                                                <form 
+                                                    action="<?= route_to('contactoEmergencia_eliminar', $contacto_emergencia['id']); ?>" 
+                                                    method="POST" 
+                                                    style="display: inline-block;"
+                                                >
+                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

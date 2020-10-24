@@ -24,6 +24,12 @@
                 </ul>
             </li>
             <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown <?php echo $page == 'contacto-emergencia' ? ' active' : ' ' ?>"><i class="fas fa-th-large"></i> <span>Contactos emergencia</span></a>
+                <ul class="dropdown-menu">
+                <li><a class="nav-link active" href="<?= route_to('ContactoEmergencia_index') ?>">Consultar</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown <?php echo $page == 'departamento' ? ' active' : ' ' ?>"><i class="fas fa-th-large"></i> <span>Departamento</span></a>
                 <ul class="dropdown-menu">
                 <li><a class="nav-link active" href="<?php echo base_url('departamento'); ?>">Consultar</a></li>
