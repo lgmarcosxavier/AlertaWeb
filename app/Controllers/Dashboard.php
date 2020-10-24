@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\AlertaModel;
+use App\Models\UsuarioModel;
 use CodeIgniter\Controller;
 use Config\Services;
 
@@ -39,9 +40,23 @@ class Dashboard extends Controller
 			$data['page'] = 'dashboard';
 
 			$modelAlertas = new AlertaModel();
+			$modelUsuarios = new UsuarioModel();
+			$resultados = array();
+			
 			$alertas = $modelAlertas->findAll();
 
-			$data['alertas'] = $alertas;
+			foreach($alertas as $alerta){
+				$item = $alerta;
+
+				$usuario = $modelUsuarios->find($alerta['id_usuario']);
+				if ( $usuario ){
+					$item['nombre_usuario'] = $usuario['nombre'] . ' ' . $usuario['apellido'];
+				}
+
+				$resultados[] = $item;
+			}
+
+			$data['alertas'] = $resultados;
 			
 			return view('layout/dashboard', $data);
 		}

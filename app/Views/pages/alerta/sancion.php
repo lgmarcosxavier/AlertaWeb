@@ -19,7 +19,7 @@
                     <div class="row">
                     <div class="col-4">
                             <label class="col-form-label">Tipo de Alerta</label>
-                            <input type="text" class="form-control" name="descripcion" placeholder="Tipo de Alerta" maxlength="100" value="<?= $alerta['id_tipo_alerta'] ?>" readonly/>
+                            <input type="text" class="form-control" name="descripcion" placeholder="Tipo de Alerta" maxlength="100" value="<?= $nombre_tipo_alerta ?>" readonly/>
                       </div>
                         <div class="col-4">
                             <label class="col-form-label">Descripción</label>

@@ -169,6 +169,7 @@ _NOTA:_ Se envviará notificación, tanto a usuarios que el que emitio alerta ag
 ## Configuración final
 _Ejecutar:_
 ```
+php spark migrate
 php spark db:seed RolesSeeder
 php spark db:seed UsuarioMasterSeeder
 php spark db:seed DepartamentoSeeder

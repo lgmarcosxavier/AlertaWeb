@@ -19,7 +19,7 @@ class ContactoEmergencia extends Migration
 				'type' 				=> 'INT',
 				'constraint' 		=> 5,
 				'unsigned' 			=> true,
-				'null'				=> false
+				'null'				=> true
 			],
 			'nombre' => [
 				'type'           	=> 'VARCHAR',
