@@ -34,6 +34,8 @@ $routes->get('/', 'Home::index');
 $routes->get("/dashboard", "Dashboard::index", ['as' => 'dashboard']);
 # TipoAlerta
 $routes->get('Alerta', 'Alerta::index', ['as' => 'alerta_index']);
+$routes->get('alerta/sancion/(:num)', 'Sancion::sancion/$1', ['as' => 'alerta_sancion']);
+$routes->post('alerta/sancion', 'Sancion::registrar', ['as' => 'alerta_registrar']);
 $routes->get('tipoAlerta', 'TipoAlerta::index', ['as' => 'tipoAlerta_index']);
 $routes->get('tipoAlerta/crear', 'TipoAlerta::crear', ['as' => 'tipoAlerta_crear']);
 $routes->post('tipoAlerta/registrar', 'TipoAlerta::registrar', ['as' => 'tipoAlerta_registrar']);

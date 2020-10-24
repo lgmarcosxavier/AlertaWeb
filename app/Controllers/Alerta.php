@@ -15,7 +15,7 @@ class Alerta extends Controller
         $data['page'] = 'departamento';
 
         $alerta = new AlertaModel();
-        $alertas = $alerta->where('estado', 1)->findAll();
+        $alertas = $alerta->findAll();
 
         $model = new UsuarioModel();
         $usuarios = $model->where('estado', 1)->findAll();
