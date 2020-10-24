@@ -33,6 +33,7 @@
                                     <th>Usuario</th>
                                     <th>Registrado el</th>
                                     <th>Estado</th>
+                                    <th>Operaciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -59,8 +60,16 @@
                                                 <?php if ($alerta['estado'] == 1){ ?> 
                                                     <div class="badge badge-success">Activo</div>
                                                 <?php }else{ ?>
-                                                    <div class="badge badge-danger">Inactivo</div>
+                                                        <?php if ($alerta['estado'] == 2){ ?> 
+                                                        <div class="badge badge-danger">Sancionado</div>
+                                                    <?php }else{ ?>
+                                                        <div class="badge badge-danger">Inactivo</div>
+                                                    <?php } ?>
                                                 <?php } ?>
+                                               
+                                            </td>
+                                            <td>
+                                            <a href="<?= route_to('alerta_sancion', $alerta['id']) ?>" class="btn btn-danger">Sancionar</a>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
