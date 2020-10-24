@@ -25,7 +25,7 @@ class Sancion extends Migration
 				'type' 				=> 'INT',
 				'constraint' 		=> 5,
 				'unsigned' 			=> true,
-				'null'				=> false
+				'null'				=> true
 			],
 			'fecha' => [
 				'type'           	=> 'DATE',

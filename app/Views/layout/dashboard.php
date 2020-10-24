@@ -390,16 +390,18 @@
                             <th>Fecha</th>
                             <th>Cliente</th>
                             <th>Estado</th>
-                            <th>Operaciones</th>
                         </tr>
                         <?php foreach($alertas as $alerta) :?>
                         <tr>
                             <td><?= $alerta['id'] ?></td>
-                            <td><?= $alerta['fecha_commit'] ?></td>
-                            <td class="font-weight-600"><?=  $alerta['id_usuario'] ?></td>
-                            <td><div class="badge badge-warning"><?= $alerta['estado'] ?></div></td>
+                            <td><?= date('d/m/Y', strtotime($alerta['fecha_commit'])) ?></td>
+                            <td class="font-weight-600"><?=  $alerta['nombre_usuario'] ?></td>
                             <td>
-                                <a href="#" class="btn btn-primary">Detail</a>
+                                <?php if ($alerta['estado'] == 1){ ?>
+                                    <div class="badge badge-success">Activo</div>
+                                <?php }else if ($alerta['estado'] == 2){ ?>
+                                    <div class="badge badge-danger">Sanción</div>
+                                <?php } ?>
                             </td>
                         </tr>
                         <?php endforeach ?>

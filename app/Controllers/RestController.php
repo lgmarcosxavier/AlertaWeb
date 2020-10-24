@@ -1281,4 +1281,64 @@ class RestController extends ResourceController
             }
         }
     }
+
+    public function eliminarUsuarioConfianza()
+    {
+        $input = $this->validate([
+            'id_usuario' => [
+                'rules'     => 'required|numeric',
+                'errors'    => [
+                    'required'      => 'No se ha reconocido tu usuario',
+                    'numeric'       => 'El codigo de usuario debe ser númerico.'
+                ]
+            ],
+            'id_usuario_confianza' => [
+                'rules'     => 'required|numeric',
+                'errors'    => [
+                    'required'      => 'No se ha reconocido el usuario confianza.',
+                    'numeric'       => 'El codigo de usuario confianza debe ser númerico.'
+                ]
+            ],
+        ]);
+
+        if ( !$input ){
+            $validation = \Config\Services::validation();
+            
+            $erroresValidation = array();
+            if ( $validation->getErrors() ){
+                foreach($validation->getErrors() as $error){
+                    $erroresValidation[] = $error;
+                }
+            }
+
+            $respuesta = null;
+            $respuesta['codigo'] = 0;
+            $respuesta['mensaje'] = 'No se ha podido eliminar el usuario confianza.';
+            $respuesta['errors'] = $erroresValidation;
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
+        }else{
+            $model = new UsuarioConfianzaModel();
+
+            $registro = $model->where('estado', 1)
+                ->where('id_usuario', $this->request->getVar('id_usuario'))
+                ->where('id_usuario_confianza', $this->request->getVar('id_usuario_confianza'))
+                ->findAll();
+
+            foreach($registro as $r){
+                $model->update($r['id'], [
+                    'estado' => 0
+                ]);
+            }
+
+            $respuesta = null;
+            $respuesta['codigo'] = 1;
+            $respuesta['mensaje'] = 'Se ha eliminar el usuario indicado de tu lista de confianza.';
+            $respuesta['errors'] = array();
+            $respuesta['data'] = null;
+            
+            return $this->respond($respuesta);
+        }
+    }
 }

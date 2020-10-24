@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AlertaModel;
 use App\Models\SancionModel;
+use App\Models\TipoAlertaModel;
 use CodeIgniter\Controller;
 use phpDocumentor\Reflection\Types\Array_;
 
@@ -16,10 +17,17 @@ class Sancion extends Controller
         //die($id);
         $data['title'] = 'Sistema Alerta';
         $data['page'] = 'departamento';
-
+        $data['nombre_tipo_alerta'] = '';
 
         $model = new AlertaModel();
         $alerta = $model->find($id);
+
+        if ( $alerta ){
+            $modelTipoAlerta = new TipoAlertaModel();
+            $tipoAlerta = $modelTipoAlerta->find($alerta['id_tipo_alerta']);
+
+            $data['nombre_tipo_alerta'] = $tipoAlerta['descripcion'];
+        }
 
         $data['alerta'] = $alerta;
 
