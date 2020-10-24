@@ -6,6 +6,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <section class="section">
+            <?php /*
             <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="card card-statistic-2">
@@ -95,17 +96,22 @@
                 </div>
             </div>
             </div>
+            */ ?>
+            <br /><br />
+            <h3>Últimas 20 alertas</h3>
             <div class="row">
-            <div class="col-lg-8">
-                <div class="card">
-                <div class="card-header">
-                    <h4>Budget vs Sales</h4>
-                </div>
-                <div class="card-body">
-                    <canvas id="myChart" height="158"></canvas>
-                </div>
-                </div>
-            </div>
+                <!--
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Budget vs Sales</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myChart" height="158"></canvas>
+                        </div>
+                    </div>
+                </div>-->
+            <!--
             <div class="col-lg-4">
                 <div class="card gradient-bottom">
                 <div class="card-header">
@@ -222,7 +228,9 @@
                 </div>
                 </div>
             </div>
+            -->
             </div>
+            <!--
             <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -362,75 +370,45 @@
                 </div>
             </div>
             </div>
+            -->
             <div class="row">
             <div class="col-md-8">
                 <div class="card">
+                    <!--
                 <div class="card-header">
                     <h4>Invoices</h4>
                     <div class="card-header-action">
                     <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
+            -->
                 <div class="card-body p-0">
                     <div class="table-responsive table-invoice">
                     <table class="table table-striped">
                         <tr>
-                        <th>Invoice ID</th>
-                        <th>Customer</th>
-                        <th>Status</th>
-                        <th>Due Date</th>
-                        <th>Action</th>
+                            <th>Código alerta</th>
+                            <th>Fecha</th>
+                            <th>Cliente</th>
+                            <th>Estado</th>
+                            <th>Operaciones</th>
                         </tr>
+                        <?php foreach($alertas as $alerta) :?>
                         <tr>
-                        <td><a href="#">INV-87239</a></td>
-                        <td class="font-weight-600">Kusnadi</td>
-                        <td><div class="badge badge-warning">Unpaid</div></td>
-                        <td>July 19, 2018</td>
-                        <td>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </td>
+                            <td><?= $alerta['id'] ?></td>
+                            <td><?= $alerta['fecha_commit'] ?></td>
+                            <td class="font-weight-600"><?=  $alerta['id_usuario'] ?></td>
+                            <td><div class="badge badge-warning"><?= $alerta['estado'] ?></div></td>
+                            <td>
+                                <a href="#" class="btn btn-primary">Detail</a>
+                            </td>
                         </tr>
-                        <tr>
-                        <td><a href="#">INV-48574</a></td>
-                        <td class="font-weight-600">Hasan Basri</td>
-                        <td><div class="badge badge-success">Paid</div></td>
-                        <td>July 21, 2018</td>
-                        <td>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td><a href="#">INV-76824</a></td>
-                        <td class="font-weight-600">Muhamad Nuruzzaki</td>
-                        <td><div class="badge badge-warning">Unpaid</div></td>
-                        <td>July 22, 2018</td>
-                        <td>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td><a href="#">INV-84990</a></td>
-                        <td class="font-weight-600">Agung Ardiansyah</td>
-                        <td><div class="badge badge-warning">Unpaid</div></td>
-                        <td>July 22, 2018</td>
-                        <td>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td><a href="#">INV-87320</a></td>
-                        <td class="font-weight-600">Ardian Rahardiansyah</td>
-                        <td><div class="badge badge-success">Paid</div></td>
-                        <td>July 28, 2018</td>
-                        <td>
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </td>
-                        </tr>
+                        <?php endforeach ?>
                     </table>
                     </div>
                 </div>
                 </div>
             </div>
+            <!--
             <div class="col-md-4">
                 <div class="card card-hero">
                 <div class="card-header">
@@ -479,6 +457,7 @@
                 </div>
                 </div>
             </div>
+            -->
             </div>
         </section>
     </div>

@@ -1,6 +1,7 @@
 <?php 
 namespace App\Controllers;
 
+use App\Models\AlertaModel;
 use CodeIgniter\Controller;
 use Config\Services;
 
@@ -36,6 +37,11 @@ class Dashboard extends Controller
 		if ($this->session->isLoggedIn) {
 			$data['title'] = 'Sistema Alerta';
 			$data['page'] = 'dashboard';
+
+			$modelAlertas = new AlertaModel();
+			$alertas = $modelAlertas->findAll();
+
+			$data['alertas'] = $alertas;
 			
 			return view('layout/dashboard', $data);
 		}

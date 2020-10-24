@@ -55,7 +55,12 @@ $routes->get('usuario/usuarios/confianza/(:num)', 'Usuario::verUsuariosConfianza
 $routes->get('mensajesPersonalizados', 'MensajesPersonalizados::index', ['as' => 'mensajesPersonalizados']);
 
 
-$routes->get('ContactosEmergenciaConsultar', 'Contacto_Emergencia::index', ['as' => 'ContactoEmergencia_index']);
+$routes->get('contactoEmergencia', 'ContactoEmergencia::index', ['as' => 'ContactoEmergencia_index']);
+$routes->get('contactoEmergencia/crear', 'ContactoEmergencia::crear', ['as' => 'contactoEmergencia_crear']);
+$routes->post('contactoEmergencia/registrar', 'ContactoEmergencia::registrar', ['as' => 'contactoEmergencia_registrar']);
+$routes->get('contactoEmergencia/editar/(:num)', 'ContactoEmergencia::editar/$1', ['as' => 'ContactoEmergencia_editar']);
+$routes->post('contactoEmergencia/actualizar/(:num)', 'ContactoEmergencia::actualizar/$1', ['as' => 'ContactoEmergencia_actualizar']);
+$routes->post('contactoEmergencia/eliminar/(:num)', 'ContactoEmergencia::destroy/$1', ['as' => 'contactoEmergencia_eliminar']);
 
 /*
 * ------------------------------------

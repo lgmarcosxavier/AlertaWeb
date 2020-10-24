@@ -17,7 +17,6 @@ class TelefonoModel extends Model
         'id_contacto_emergencia', 
         'numero_telefono', 
         'estado',
-        'reset_expires',
         'fecha_commit',
         'hora_commit'
     ];
