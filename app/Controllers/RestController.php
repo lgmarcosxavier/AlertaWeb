@@ -132,6 +132,14 @@ class RestController extends ResourceController
                     'man_length'    =>  'La longitud máxima de la direccion es 100.'
                 ]
             ],
+            'url_foto' => [
+                'rules'     =>  'max_length[255]',
+                'errors'    => [
+                    'required'      =>  'La url para la foto es obligatorio.',
+                    'min_length'    =>  'La longitud minima de la url para la foto es 5.',
+                    'man_length'    =>  'La longitud máxima de la url para la foto es 255.'
+                ]
+            ],
         ]);
         
         $model = new UsuarioModel();
@@ -163,6 +171,7 @@ class RestController extends ResourceController
                 'contrasenia'       => $this->request->getVar('contrasenia'),
                 'password_hash'     => password_hash($this->request->getVar('contrasenia'), PASSWORD_DEFAULT),
                 'direccion'         => $this->request->getVar('direccion'),
+                'url_foto'          => $this->request->getVar('url_foto'),
                 'fotografia'        => null,
                 'estado'            => 1,
                 'activate_hash'     => null,
@@ -1029,6 +1038,8 @@ class RestController extends ResourceController
 
         $modelNotificacionAlerta = new NotificacionAlertaModel();
         $modelAlerta = new AlertaModel();
+		$modelTipoALerta = new TipoAlertaModel();
+		$modelUsuario = new UsuarioModel();
 
         if ( !$input ){
             $validation = \Config\Services::validation();
@@ -1059,7 +1070,22 @@ class RestController extends ResourceController
                     $alerta = $modelAlerta->find($notificacion['id_alerta']);
 
                     if ( $alerta ){
-                        $alertas[] = $alerta;
+						$item = $alerta;
+						$item['nombre_tipo_alerta'] = '';
+						$item['nombre_usuario'] = '';
+						$tipoAlerta = $modelTipoALerta->find($alerta['id_tipo_alerta']);
+						if ( $tipoAlerta ){
+							$item['nombre_tipo_alerta'] = $tipoAlerta['descripcion'];
+						}
+						
+						$usuario = $modelUsuario->find($alerta['id_usuario']);
+						if ( $usuario ){
+							$item['nombre_usuario'] = $usuario['nombre'] . ' ' . $usuario['apellido'];
+						}
+							
+						
+						
+                        $alertas[] = $item;
                     }
                 }
 

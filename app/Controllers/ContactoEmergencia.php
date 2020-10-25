@@ -68,16 +68,13 @@ class ContactoEmergencia extends Controller
                 'hora_commit'   => date('H:i:s')
             );
             
-            $model->insert($datos);
-            $id = $model->getInsertID();
+            $id = $model->insert($datos);
             
             if ( $id ){
                 $datosTelefono = array(
                     'id_contacto_emergencia' => $id,
                     'numero_telefono' => $numero_telefono,
-                    'estado' => 1,
-                    'fecha_commit'  => date('Y-m-d'),
-                    'hora_commit'   => date('H:i:s')
+                    'estado' => 1
                 );
                 
                 $modelTelefono->insert($datosTelefono);

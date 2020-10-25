@@ -144,9 +144,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Iniciado sesión</div>
+                            <?php /*
                             <a href="<?php echo base_url('features_profile'); ?>" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Perfil
                             </a>
+                            */?>
                             <div class="dropdown-divider"></div>
                             <a href="<?= site_url('logout') ?>" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Cerrar sesión

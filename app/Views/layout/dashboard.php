@@ -372,7 +372,7 @@
             </div>
             -->
             <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <!--
                 <div class="card-header">
@@ -390,17 +390,31 @@
                             <th>Fecha</th>
                             <th>Cliente</th>
                             <th>Estado</th>
+                            <th>Operaciones</th>
                         </tr>
                         <?php foreach($alertas as $alerta) :?>
                         <tr>
-                            <td><?= $alerta['id'] ?></td>
-                            <td><?= date('d/m/Y', strtotime($alerta['fecha_commit'])) ?></td>
-                            <td class="font-weight-600"><?=  $alerta['nombre_usuario'] ?></td>
+                            <td><?= $alerta->id ?></td>
+                            <td><?= date('d/m/Y', strtotime($alerta->fecha_commit)) ?></td>
+                            <td class="font-weight-600"><?=  $alerta->nombre . ' ' . $alerta->apellido ?></td>
                             <td>
-                                <?php if ($alerta['estado'] == 1){ ?>
+                                <?php if ($alerta->estado == 1){ ?>
                                     <div class="badge badge-success">Activo</div>
-                                <?php }else if ($alerta['estado'] == 2){ ?>
-                                    <div class="badge badge-danger">Sanción</div>
+                                <?php }else if ($alerta->estado == 2){ ?>
+                                    <div class="badge badge-danger">Sancionada</div>
+                                <?php }else if ($alerta->estado == 2){ ?>
+                                    <div class="badge badge-info">Atendida</div>
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <?php if ( $alerta->estado == 1 ){ ?>
+                                    <a href="<?= route_to('alerta_visualizar', $alerta->id) ?>" class="btn btn-info">Visualizar</a>
+                                    <a href="<?= route_to('alerta_verAtender', $alerta->id) ?>" class="btn btn-success">Atender</a>
+                                    <a href="<?= route_to('alerta_sancion', $alerta->id) ?>" class="btn btn-danger">Sancionar</a>
+                                <?php }else if ( $alerta->estado == 2) { ?>
+                                    <a href="<?= route_to('alerta_visualizar', $alerta->id) ?>" class="btn btn-info">Visualizar</a>
+                                <?php }else if ( $alerta->estado == 3 ) { ?>
+                                    <a href="<?= route_to('alerta_visualizar', $alerta->id) ?>" class="btn btn-info">Visualizar</a>
                                 <?php } ?>
                             </td>
                         </tr>

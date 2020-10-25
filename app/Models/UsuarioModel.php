@@ -22,6 +22,7 @@ class UsuarioModel extends Model
         'password_hash', 
         'direccion',
         'fotografia',
+        'url_foto',
         'estado',
         'activate_hash',
         'reset_hash',
