@@ -9,7 +9,9 @@ class ContactoEmergencia extends Controller
 {
 	public function index()
 	{
-		$data['title'] = 'Sistema Alerta';
+        session();
+
+        $data['title'] = 'Sistema Alerta';
         $data['page'] = 'Contactos_Emergencia';
 
         $model = new ContactoEmergenciaModel();
@@ -41,6 +43,8 @@ class ContactoEmergencia extends Controller
     
     public function crear()
     {
+        session();
+        
         $data['title'] = 'Sistema Alerta';
         $data['page'] = 'tipo-alerta-create';
 
@@ -68,16 +72,13 @@ class ContactoEmergencia extends Controller
                 'hora_commit'   => date('H:i:s')
             );
             
-            $model->insert($datos);
-            $id = $model->getInsertID();
+            $id = $model->insert($datos);
             
             if ( $id ){
                 $datosTelefono = array(
                     'id_contacto_emergencia' => $id,
                     'numero_telefono' => $numero_telefono,
-                    'estado' => 1,
-                    'fecha_commit'  => date('Y-m-d'),
-                    'hora_commit'   => date('H:i:s')
+                    'estado' => 1
                 );
                 
                 $modelTelefono->insert($datosTelefono);
@@ -95,6 +96,8 @@ class ContactoEmergencia extends Controller
 
     public function editar($id = null)
     {
+        session();
+
         if ( $id ){
             $data = array();
             $model = new ContactoEmergenciaModel();

@@ -20,7 +20,7 @@ class AlertaModel extends Model
         'latitud',
         'foto',
         'id_usuario',
-        'estado',
+        'estado', // 0=inactiva, 1=activa, 2=sancionada, 3=atendida
         'fecha_commit',
         'hora_commit'
     ];

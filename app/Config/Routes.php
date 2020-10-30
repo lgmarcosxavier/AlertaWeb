@@ -32,10 +32,15 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get("/dashboard", "Dashboard::index", ['as' => 'dashboard']);
-# TipoAlerta
+# Alerta
 $routes->get('Alerta', 'Alerta::index', ['as' => 'alerta_index']);
+$routes->get('alerta/visualizar/(:num)', 'Alerta::visualizar/$1', ['as' => 'alerta_visualizar']);
+$routes->get('alerta/atender/(:num)', 'Alerta::verAtender/$1', ['as' => 'alerta_verAtender']);
+$routes->post('alerta/registrar/atender/(:num)', 'Alerta::registarAtender/$1', ['as' => 'alerta_atendar']);
+# Sancion
 $routes->get('alerta/sancion/(:num)', 'Sancion::sancion/$1', ['as' => 'alerta_sancion']);
 $routes->post('alerta/sancion', 'Sancion::registrar', ['as' => 'alerta_registrar']);
+# TipoAlerta
 $routes->get('tipoAlerta', 'TipoAlerta::index', ['as' => 'tipoAlerta_index']);
 $routes->get('tipoAlerta/crear', 'TipoAlerta::crear', ['as' => 'tipoAlerta_crear']);
 $routes->post('tipoAlerta/registrar', 'TipoAlerta::registrar', ['as' => 'tipoAlerta_registrar']);
@@ -53,7 +58,6 @@ $routes->post('usuario/administrador/eliminar/(:num)', 'Usuario::eliminarAdminis
 $routes->post('usuario/usuarios/eliminar/(:num)', 'Usuario::darBajaUsuario/$1', ['as' => 'usuarioUsuarios_eliminar']);
 $routes->get('usuario/usuarios/confianza/(:num)', 'Usuario::verUsuariosConfianza/$1', ['as' => 'usuariosConfianza_usuario']);
 $routes->get('mensajesPersonalizados', 'MensajesPersonalizados::index', ['as' => 'mensajesPersonalizados']);
-
 
 $routes->get('contactoEmergencia', 'ContactoEmergencia::index', ['as' => 'ContactoEmergencia_index']);
 $routes->get('contactoEmergencia/crear', 'ContactoEmergencia::crear', ['as' => 'contactoEmergencia_crear']);

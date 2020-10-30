@@ -166,6 +166,17 @@ __Sancion__.
 - Realizado método api rest para registrar alerta, se considera las sanciones, y usuarios confianza para emitir una notificación.
 _NOTA:_ Se envviará notificación, tanto a usuarios que el que emitio alerta agregó a confianza, como también otros usuarios que agregaron a confianza a éste.
 
+**24/10/2020**
+- En el dashboard se ha agregado consulta de las ultimas 20 alertas;
+- Agregada url foto a la tabla usuario.
+- Agregada funcionalidad para visualizar alerta con ubicacion, marcar como atendida.
+- Agregado ubicacion de donde se realizado la alerta a ver el formulario para sancionar la alerta.
+
+**30/10/2020**
+- Las ultimas 20 alertas a mostrar en el dashboard se muestra por id e forma descendente.
+- Al visualizar vistas se recupera los datos de sesión del usuario logueado.
+
+
 ## Configuración final
 _Ejecutar:_
 ```
@@ -198,3 +209,8 @@ SET AUTOCOMMIT = 0
 SET time_zone = "+00:00"
 ```
 Con esto también se ha solucioanado que a veces si encontraba el usuario y otras veces no lo identificaba xD.
+
+## Para agregar la columna url_foto en usuario, ya que no se puede ejecutar migraciones por el plan gratuito
+```
+ALTER TABLE `usuario` ADD `url_foto` VARCHAR(255) NULL DEFAULT NULL AFTER `fotografia`;
+```

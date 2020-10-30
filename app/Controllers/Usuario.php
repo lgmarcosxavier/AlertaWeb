@@ -77,15 +77,17 @@ class Usuario extends Controller
         if ( !$input ){
             return redirect()->to(route_to('usuarioAdministrador_crear'))->withInput();
         }else{
-           $model->save([
+            $model->save([
                 'id_rol'            => 1, // Administrador
                 'nombre'            => $this->request->getVar('nombre'),
                 'apellido'          => $this->request->getVar('apellido'),
+                'numero_telefono'   => null,
                 'email'             => $this->request->getVar('email'),
                 'contrasenia'       => $this->request->getVar('contrasenia'),
                 'password_hash'     => password_hash($this->request->getVar('contrasenia'), PASSWORD_DEFAULT),
                 'direccion'         => $this->request->getVar('direccion'),
                 'fotografia'        => null,
+                'url_foto'          => null,
                 'estado'            => 1,
                 'activate_hash'     => null,
                 'reset_hash'        => null,

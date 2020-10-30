@@ -9,6 +9,7 @@ class Municipio extends Controller
 {
 	public function index()
 	{
+		session();
 		$data['title'] = 'Sistema Alerta';
         $data['page'] = 'municipio';
 

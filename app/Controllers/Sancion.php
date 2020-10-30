@@ -13,7 +13,7 @@ class Sancion extends Controller
 
     public function sancion($id = null)
     {
-    
+        session();
         //die($id);
         $data['title'] = 'Sistema Alerta';
         $data['page'] = 'departamento';

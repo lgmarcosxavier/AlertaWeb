@@ -57,19 +57,24 @@
                                             ?></td>
                                             <td><?php echo date('d/m/Y', strtotime($alerta['fecha_commit'])) . ' ' . $alerta['hora_commit'] ?></td>
                                             <td>
-                                                <?php if ($alerta['estado'] == 1){ ?> 
+                                                <?php if ($alerta['estado'] == 1){ ?>
                                                     <div class="badge badge-success">Activo</div>
-                                                <?php }else{ ?>
-                                                        <?php if ($alerta['estado'] == 2){ ?> 
-                                                        <div class="badge badge-danger">Sancionado</div>
-                                                    <?php }else{ ?>
-                                                        <div class="badge badge-danger">Inactivo</div>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                               
+                                                <?php }else if ($alerta['estado'] == 2){ ?>
+                                                    <div class="badge badge-danger">Sancionada</div>
+                                                <?php }else if ($alerta['estado'] == 3){ ?>
+                                                    <div class="badge badge-info">Atendida</div>
+                                                <?php }else{} ?>
                                             </td>
                                             <td>
-                                            <a href="<?= route_to('alerta_sancion', $alerta['id']) ?>" class="btn btn-danger">Sancionar</a>
+                                                <?php if ( $alerta['estado'] == 1 ){ ?>
+                                                    <a href="<?= route_to('alerta_visualizar', $alerta['id']) ?>" class="btn btn-info">Visualizar</a>
+                                                    <a href="<?= route_to('alerta_verAtender', $alerta['id']) ?>" class="btn btn-success">Atender</a>
+                                                    <a href="<?= route_to('alerta_sancion', $alerta['id']) ?>" class="btn btn-danger">Sancionar</a>
+                                                <?php }else if ( $alerta['estado'] == 2) { ?>
+                                                    <a href="<?= route_to('alerta_visualizar', $alerta['id']) ?>" class="btn btn-info">Visualizar</a>
+                                                <?php }else if ( $alerta['estado'] == 3 ) { ?>
+                                                    <a href="<?= route_to('alerta_visualizar', $alerta['id']) ?>" class="btn btn-info">Visualizar</a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

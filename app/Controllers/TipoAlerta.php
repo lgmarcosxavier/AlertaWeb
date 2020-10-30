@@ -8,6 +8,7 @@ class TipoAlerta extends Controller
 {
 	public function index()
 	{
+        session();
         $data['title'] = 'Sistema Alerta';
         $data['page'] = 'tipo-alerta';
         
@@ -23,6 +24,7 @@ class TipoAlerta extends Controller
     
     public function crear()
     {
+        session();
         $data['title'] = 'Sistema Alerta';
         $data['page'] = 'tipo-alerta-create';
 
@@ -64,6 +66,7 @@ class TipoAlerta extends Controller
 
     public function editar($id = null)
     {
+        session();
         if ( $id ){
             $model = new TipoAlertaModel();
 

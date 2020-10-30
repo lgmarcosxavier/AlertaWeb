@@ -8,7 +8,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tipo aletas</h1>
+                <h1>Contacto de emergencia</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item">Contacto emergencia</div>
                     <div class="breadcrumb-item"><a href="<?= route_to('ContactoEmergencia_index') ?>">Consultar</a></div>

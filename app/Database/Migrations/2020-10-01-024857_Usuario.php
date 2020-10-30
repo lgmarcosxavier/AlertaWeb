@@ -34,7 +34,7 @@ class Usuario extends Migration
 			'numero_telefono' => [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '100',
-				'null'				=> false
+				'null'				=> true
 			],
 			'email' => [
 				'type'           	=> 'VARCHAR',
@@ -56,6 +56,11 @@ class Usuario extends Migration
 				'null'				=> true
 			],
 			'fotografia' => [
+				'type'           	=> 'VARCHAR',
+				'constraint'     	=> '255',
+				'null'				=> true
+			],
+			'url_foto' => [
 				'type'           	=> 'VARCHAR',
 				'constraint'     	=> '255',
 				'null'				=> true
