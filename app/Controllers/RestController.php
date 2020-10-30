@@ -693,7 +693,7 @@ class RestController extends ResourceController
             $respuesta['codigo'] = 1;
             $respuesta['mensaje'] = 'Se han recuperado lo usuarios con confianza.';
             $respuesta['errors'] = array();
-            $respuesta['data'] = array();
+            $respuesta['data'] = $usuarios;
             
             return $this->respond($respuesta);
         }

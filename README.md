@@ -172,6 +172,10 @@ _NOTA:_ Se envviará notificación, tanto a usuarios que el que emitio alerta ag
 - Agregada funcionalidad para visualizar alerta con ubicacion, marcar como atendida.
 - Agregado ubicacion de donde se realizado la alerta a ver el formulario para sancionar la alerta.
 
+**30/10/2020**
+- Las ultimas 20 alertas a mostrar en el dashboard se muestra por id e forma descendente.
+
+
 ## Configuración final
 _Ejecutar:_
 ```
