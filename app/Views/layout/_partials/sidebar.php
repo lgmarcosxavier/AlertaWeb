@@ -17,12 +17,14 @@
                 <li><a class="nav-link active" href="<?= route_to('usuariosCliente'); ?>">Consultar usuarios</a></li>
                 </ul>
             </li>
+            <?php /*
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown <?php echo $page == 'mensajes-personalizados' ? ' active' : ' ' ?>"><i class="fas fa-th-large"></i> <span>Mensajes personalizados</span></a>
                 <ul class="dropdown-menu">
                 <li><a class="nav-link active" href="<?= route_to('mensajesPersonalizados'); ?>">Consultar</a></li>
                 </ul>
             </li>
+            */ ?>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown <?php echo $page == 'contacto-emergencia' ? ' active' : ' ' ?>"><i class="fas fa-th-large"></i> <span>Contactos emergencia</span></a>
                 <ul class="dropdown-menu">

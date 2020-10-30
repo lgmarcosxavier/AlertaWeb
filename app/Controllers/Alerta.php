@@ -10,6 +10,7 @@ class Alerta extends Controller
 {
 	public function index()
 	{
+        session();
 		$data['title'] = 'Sistema Alerta';
         $data['page'] = 'departamento';
 
@@ -32,6 +33,7 @@ class Alerta extends Controller
     
     public function visualizar($id = null)
     {
+        session();
         if ( $id ){
             $model = new AlertaModel();
             $alerta = $model->find($id);
@@ -55,6 +57,7 @@ class Alerta extends Controller
 
     public function verAtender($id = null)
     {
+        session();
         if ( $id ){
             $model = new AlertaModel();
             $alerta = $model->find($id);

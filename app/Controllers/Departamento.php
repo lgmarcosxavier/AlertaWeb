@@ -8,6 +8,7 @@ class Departamento extends Controller
 {
 	public function index()
 	{
+        session();
 		$data['title'] = 'Sistema Alerta';
         $data['page'] = 'departamento';
 

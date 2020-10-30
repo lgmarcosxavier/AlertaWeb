@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
                                     <br /><br />
-                                    <input type="hidden" name="id_usuario" value="<?php echo $_SESSION['userData']['id_usuario'];?>">
+                                    <input type="hidden" name="id_usuario" value="<?php echo $_SESSION['userData']['id'];?>">
                                     <div class="row">
                                         <div class="col-4">
                                             <button type="submit" class="btn btn-success">Registrar</button>

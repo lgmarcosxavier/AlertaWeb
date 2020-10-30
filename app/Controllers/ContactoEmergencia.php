@@ -9,7 +9,9 @@ class ContactoEmergencia extends Controller
 {
 	public function index()
 	{
-		$data['title'] = 'Sistema Alerta';
+        session();
+
+        $data['title'] = 'Sistema Alerta';
         $data['page'] = 'Contactos_Emergencia';
 
         $model = new ContactoEmergenciaModel();
@@ -41,6 +43,8 @@ class ContactoEmergencia extends Controller
     
     public function crear()
     {
+        session();
+        
         $data['title'] = 'Sistema Alerta';
         $data['page'] = 'tipo-alerta-create';
 
@@ -92,6 +96,8 @@ class ContactoEmergencia extends Controller
 
     public function editar($id = null)
     {
+        session();
+
         if ( $id ){
             $data = array();
             $model = new ContactoEmergenciaModel();

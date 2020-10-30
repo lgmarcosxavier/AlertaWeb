@@ -8,7 +8,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tipo aletas</h1>
+                <h1>Tipo alertas</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item"><a href="<?php echo base_url('tipoAlerta'); ?>">Tipo Alerta</a></div>
                     <div class="breadcrumb-item">Consultar</div>
