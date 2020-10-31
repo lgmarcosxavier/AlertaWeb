@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="col-4">
                                             <label class="col-form-label">Número de teléfono</label>
-                                            <input type="text" class="form-control" name="numero_telefono" placeholder="Número de telefono" maxlength="100" value="<?= $telefono ?>" required/>
+                                            <input type="number" class="form-control" name="numero_telefono" placeholder="Número de telefono" maxlength="100" value="<?= $telefono ?>" required/>
                                         </div>
                                     </div>
                                     <br /><br />

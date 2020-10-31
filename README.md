@@ -175,6 +175,8 @@ _NOTA:_ Se envviará notificación, tanto a usuarios que el que emitio alerta ag
 **30/10/2020**
 - Las ultimas 20 alertas a mostrar en el dashboard se muestra por id e forma descendente.
 - Al visualizar vistas se recupera los datos de sesión del usuario logueado.
+- Se valida que tipo alerta no se puede eliminar si hay una alerta de este tipo, no lo elimine.
+
 
 
 ## Configuración final

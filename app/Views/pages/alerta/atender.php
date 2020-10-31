@@ -32,7 +32,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Visualizar alerta</h1>
+                <h1>Atender alerta</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item">Sancion</div>
                     <div class="breadcrumb-item"><a href="<?= route_to('alerta_index'); ?>">Alertas</a></div>
