@@ -27,6 +27,7 @@ class ContactoEmergencia extends Controller
             
             foreach($telefonos as $telefono){
                 $num_telefono .= $telefono['numero_telefono'];
+                break;
             }
 
             $item['telefono'] = $num_telefono;

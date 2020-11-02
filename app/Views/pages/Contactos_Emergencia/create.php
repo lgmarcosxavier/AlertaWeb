@@ -8,7 +8,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tipo aletas</h1>
+                <h1>Contacto emergencia</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item">Contacto emergencia</div>
                     <div class="breadcrumb-item"><a href="<?= route_to('ContactoEmergencia_index') ?>">Consultar</a></div>
@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="col-4">
                                             <label class="col-form-label">Número de teléfono</label>
-                                            <input type="text" class="form-control" name="numero_telefono" placeholder="Número de telefono" maxlength="100" required/>
+                                            <input type="number" class="form-control" name="numero_telefono" placeholder="Número de telefono" maxlength="100" required/>
                                         </div>
                                     </div>
                                     <br /><br />

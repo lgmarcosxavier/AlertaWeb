@@ -1,6 +1,7 @@
 <?php 
 namespace App\Controllers;
 
+use App\Models\AlertaModel;
 use App\Models\TipoAlertaModel;
 use CodeIgniter\Controller;
 
@@ -107,19 +108,36 @@ class TipoAlerta extends Controller
 
     public function destroy($id = null)
     {
+        session();
         if ( $id ){
             $model = new TipoAlertaModel();
             //$model->delete($id);
             $tipoAlerta = $model->find($id);
 
-            if ( $tipoAlerta ){
-                $model->update($id, [
-                    'estado' => 0
-                ]);
+            $cantidad_tipos = 0;
 
-                $_SESSION['mensaje'] = 'Tipo alerta eliminado';
-                return redirect()->to(route_to('tipoAlerta_index'));
+            $db = db_connect();
+
+            $cantidades_aux = $db->query("SELECT COUNT(*) as 'total' FROM alerta where estado != 0 AND id_tipo_alerta = " . $tipoAlerta['id'])->getResultArray();
+            
+            if ( $cantidades_aux != null ){ $cantidad_tipos = $cantidades_aux[0]['total']; }
+
+            $db->close();
+
+            if ( $cantidad_tipos < 1 ){
+                if ( $tipoAlerta ){
+                    $model->update($id, [
+                        'estado' => 0
+                    ]);
+    
+                    $_SESSION['mensaje'] = 'Tipo alerta eliminado';
+                    return redirect()->to(route_to('tipoAlerta_index'));
+                }
+            }else{
+                $_SESSION['mensaje'] = 'No se pudo eliminar el tipo de alerta ya que hay una alerta de este tipo.';
+                    return redirect()->to(route_to('tipoAlerta_index'));
             }
+            
         }
         
         $_SESSION['mensaje'] = 'No se pudo eliminar el tipo de alerta';

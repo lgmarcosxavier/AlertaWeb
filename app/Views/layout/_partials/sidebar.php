@@ -57,6 +57,9 @@
                 <li><a class="nav-link" href="<?= route_to('alerta_index') ?>">Consultar</a></li>
                 </ul>
             </li>
+            <li class="dropdown">
+                <li><a class="nav-link" href="<?= route_to('contribuyente_index') ?>">Contribuyentes</a></li>
+            </li>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

@@ -106,7 +106,7 @@
                         <tr>
                             <th>Código alerta</th>
                             <th>Fecha</th>
-                            <th>Cliente</th>
+                            <th>Usuario</th>
                             <th>Estado</th>
                             <th>Operaciones</th>
                         </tr>

@@ -66,6 +66,8 @@ $routes->get('contactoEmergencia/editar/(:num)', 'ContactoEmergencia::editar/$1'
 $routes->post('contactoEmergencia/actualizar/(:num)', 'ContactoEmergencia::actualizar/$1', ['as' => 'ContactoEmergencia_actualizar']);
 $routes->post('contactoEmergencia/eliminar/(:num)', 'ContactoEmergencia::destroy/$1', ['as' => 'contactoEmergencia_eliminar']);
 
+$routes->get('contribuyentes', 'Contribuyente::index', ['as' => 'contribuyente_index']);
+
 /*
 * ------------------------------------
 * Api Rest
