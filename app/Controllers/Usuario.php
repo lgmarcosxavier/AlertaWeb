@@ -27,7 +27,15 @@ class Usuario extends Controller
 
     public function usuarios()
     {
-        
+		$data['title'] = 'Sistema Alerta';
+		$data['page'] = 'usuario-usuarios';
+		$model = new UsuarioModel();
+		$usuarios = $model->where('estado', 1)
+			->where('id_rol', 2)
+			->findAll();
+		$data['usuarios'] = $usuarios;
+		
+		return view('pages/usuario/usuarios/index', $data);        
     }
 
     //--------------------------------------------------------------------
